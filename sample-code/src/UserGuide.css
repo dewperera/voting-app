@@ -1,0 +1,54 @@
+/* src/UserGuide.css */
+
+.user-guide-page {
+    max-height: 100vh; /* Full viewport height */
+    overflow-y: scroll; /* Allow scrolling */
+    -ms-overflow-style: none;  /* Hide scrollbar in Internet Explorer and Edge */
+    scrollbar-width: none;  /* Hide scrollbar in Firefox */
+    padding: 20px;
+    background-color: #f8f9fa; /* Light background for readability */
+    box-sizing: border-box; /* Ensure padding is included within height */
+    text-align: left; /* Ensure content is left-aligned */
+  }
+  
+  .user-guide-page::-webkit-scrollbar {
+    display: none; /* Hide scrollbar in Chrome, Safari, and Opera */
+  }
+  
+  .user-guide-heading {
+    font-size: 2.5em;
+    color: #343a40; /* Dark color for headings */
+    margin-bottom: 0.5em;
+    margin-top: 0; /* Ensure no extra margin at the top */
+    text-align: left; /* Left-align the heading */
+  }
+  
+  .user-guide-subheading {
+    font-size: 1.2em;
+    color: #6c757d; /* Subtle color for subheading */
+    margin-bottom: 2em;
+    text-align: left; /* Left-align the subheading */
+  }
+  
+  .user-guide-section-heading {
+    font-size: 1.8em;
+    color: #007bff; /* Primary color for section headings */
+    margin-bottom: 1em;
+    text-align: left; /* Left-align the section heading */
+  }
+  
+  p {
+    line-height: 1.6; /* Improved readability with line spacing */
+    color: #495057; /* Dark gray color for body text */
+    text-align: left; /* Left-align the paragraph text */
+  }
+  
+  .container {
+    padding-top: 20px; /* Add some padding at the top of the container */
+    text-align: left; /* Ensure container content is left-aligned */
+  }
+  
+  
+  
+
+  
