@@ -1,6 +1,6 @@
 .rules-regulations-container {
     max-width: 800px;
-    margin: 20px auto;
+    margin: 80px  auto 0;
     padding: 30px;
     background: linear-gradient(to right, #ffffff, #f0f0f0);
     border-radius: 12px;
@@ -12,6 +12,12 @@
     position: relative;
     box-sizing: border-box; /* Include padding in height calculation */
 }
+
+.container {
+    position: relative; /* Ensure z-index works */
+    z-index: 10; /* Adjust if necessary */
+}
+
 
 /* Hide scrollbar for WebKit browsers (Chrome, Safari) */
 .rules-regulations-container::-webkit-scrollbar {
@@ -64,5 +70,4 @@
 .rule-item:last-child {
     border-bottom: none;
 }
-
 
