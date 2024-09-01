@@ -1,0 +1,68 @@
+.rules-regulations-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 30px;
+    background: linear-gradient(to right, #ffffff, #f0f0f0);
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    height: 100%; /* Ensure it uses available height */
+    max-height: 500px; /* Or set to whatever fits your design */
+    overflow-y: auto; /* Allow vertical scrolling */
+    overflow-x: hidden; /* Hide horizontal scrolling */
+    position: relative;
+    box-sizing: border-box; /* Include padding in height calculation */
+}
+
+/* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+.rules-regulations-container::-webkit-scrollbar {
+    width: 0; /* Hides the scrollbar */
+    background: transparent; /* Optional */
+}
+
+/* Hide scrollbar for Firefox */
+.rules-regulations-container {
+    scrollbar-width: none; /* Hides the scrollbar */
+}
+
+/* Optional: Additional styling to ensure smooth scrolling */
+.rules-regulations-container {
+    -ms-overflow-style: none; /* Hides scrollbar in Internet Explorer and Edge */
+}
+
+.rules-title {
+    text-align: center;
+    font-size: 2em;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.rules-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.rule-item {
+    font-size: 1.2em;
+    color: #34495e;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 5px solid #3498db;
+    background-color: #ecf0f1;
+    border-radius: 6px;
+    font-family: 'Roboto', sans-serif;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.rule-item:hover {
+    background-color: #bdc3c7;
+    transform: translateX(10px);
+}
+
+.rule-item:last-child {
+    border-bottom: none;
+}
+
+
