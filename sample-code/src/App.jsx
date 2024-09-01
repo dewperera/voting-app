@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVoteYea } from '@fortawesome/free-solid-svg-icons';
 
 // Import the new page components
-import UserGuide from './userGuide';
+import UserGuide from './UserGuide';
 import Rules from './Rules';
 import About from './About';
 import CandidateRegistration from './CandidateRegistration';

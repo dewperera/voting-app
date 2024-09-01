@@ -1,9 +1,9 @@
 .user-guide-page {
   height: 100vh; /* Full viewport height */
   overflow-y: auto; /* Allow scrolling */
-  padding: 20px;
+  /* padding: 20px; */
   background-color: #f8f9fa;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   text-align: left;
 }
 
