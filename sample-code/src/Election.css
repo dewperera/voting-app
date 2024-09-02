@@ -1,1 +1,102 @@
-
+.cast-votes-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .candidate-label1 {
+    display: inline-block;
+    width: 100px;
+    height: 60px;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    line-height: 60px;
+    border-radius: 10px;
+    margin: 0 10px;
+    cursor: pointer;
+  }
+  
+  .pink {
+    background-color: #e91e63;
+  }
+  
+  .green {
+    background-color: #4caf50;
+  }
+  
+  .dark-green {
+    background-color: #1b5e20;
+  }
+  
+  .red {
+    background-color: #f44336;
+  }
+  
+  .vote-box {
+    background-color: #1e88e5;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(85, 42, 42, 0.251);
+    text-align: center;
+    width: 300px;
+  }
+  
+  .vote-title {
+    background-color: rgb(126, 41, 41);
+    color: white;
+    font-size: 18px;
+    padding: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  .voter-label, .candidate-label {
+    display: block;
+    font-weight: bold;
+    color: black;
+  }
+  
+  .voter-input {
+    background-color: #6d7964;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    width: 100%;
+    margin-top: 5px;
+  }
+  
+  .candidate-input {
+    background-color: #6d7964;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    width: 100%;
+    margin-top: 5px;
+  }
+  
+  .cast-button {
+    background-color: #ab2020;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .cast-button:hover {
+    background-color: #388e3c;
+  }
+  
