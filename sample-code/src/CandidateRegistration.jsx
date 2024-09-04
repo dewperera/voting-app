@@ -1,18 +1,20 @@
-// src/CandidateRegistration.jsx
 import { useState } from 'react';
-import { Container, Form, Button, Col, Row } from 'react-bootstrap';
+import { Container, Form, Button, Col, Row, Alert } from 'react-bootstrap';
 import './CandidateRegistration.css';
-import {candidatesAPI} from "./api/candidatesAPI.js"; // Custom CSS file
+import { candidatesAPI } from "./api/candidatesAPI.js";
+import LoginForm from './LoginForm';
 
 function CandidateRegistration() {
-  const [formData, setFormData] = useState({
-    // cname: 'Dilshan',
-    // age: '34',
-    // experience: 11,
-    // prev_position: 'Minister',
-    // qualifications: 'O/L'
-  });
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [formData, setFormData] = useState({});
+  const [candidateID, setCandidateID] = useState('');
   const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState(''); // For success/error messages
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevData => ({
@@ -23,32 +25,87 @@ function CandidateRegistration() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted', formData);
-    setLoading(true)
-    candidatesAPI.createCandidate(formData).then(res=>{
-      console.log(res.data)
-      setLoading(false)
-    }).catch(err=>{
-      console.log(err)
-      setLoading(false)
-    })
-
+    setLoading(true);
+    candidatesAPI.createCandidate(formData).then(res => {
+      setMessage('Candidate created successfully!');
+      setLoading(false);
+    }).catch(err => {
+      setMessage('Error creating candidate.');
+      setLoading(false);
+    });
   };
+
+  const handleSearch = () => {
+    setLoading(true);
+    candidatesAPI.getCandidateById(candidateID).then(res => {
+      setFormData(res.data);
+      setMessage('Candidate found!');
+      setLoading(false);
+    }).catch(err => {
+      setMessage('Candidate not found.');
+      setLoading(false);
+    });
+  };
+
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    candidatesAPI.updateCandidate(candidateID, formData).then(res => {
+      setMessage('Candidate updated successfully!');
+      setLoading(false);
+    }).catch(err => {
+      setMessage('Error updating candidate.');
+      setLoading(false);
+    });
+  };
+
+  const handleDelete = () => {
+    setLoading(true);
+    candidatesAPI.deleteCandidate(candidateID).then(res => {
+      setMessage('Candidate deleted successfully!');
+      setFormData({});
+      setLoading(false);
+    }).catch(err => {
+      setMessage('Error deleting candidate.');
+      setLoading(false);
+    });
+  };
+
+  if (!isLoggedIn) {
+    return <LoginForm onLogin={handleLogin} />;
+  }
 
   return (
     <Container className="candidate-registration-page">
       <Row>
         <Col>
           <h3 className="text-center">Candidate Registration Form</h3>
+
+          {message && <Alert variant={message.includes('Error') ? 'danger' : 'success'}>{message}</Alert>}
+
           <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="formCandidateID">
+              <Form.Label>Candidate ID</Form.Label>
+              <Form.Control
+                type="text"
+                name="candidateID"
+                placeholder="Enter candidate ID"
+                value={candidateID}
+                onChange={(e) => setCandidateID(e.target.value)}
+                required
+              />
+              <Button variant="primary" onClick={handleSearch} disabled={loading}>
+                {loading ? 'Searching...' : 'Search'}
+              </Button>
+            </Form.Group>
+
             <Form.Group controlId="formName">
               <Form.Label>Name</Form.Label>
               <Form.Control
                 type="text"
                 name="cname"
                 placeholder="Enter your name"
-                value={formData.cname}
+                value={formData.cname || ''}
                 onChange={handleChange}
                 required
               />
@@ -60,7 +117,7 @@ function CandidateRegistration() {
                 type="text"
                 name="age"
                 placeholder="Enter your age"
-                value={formData.age}
+                value={formData.age || ''}
                 onChange={handleChange}
                 required
               />
@@ -73,7 +130,7 @@ function CandidateRegistration() {
                 rows={3}
                 name="experience"
                 placeholder="Enter your experience"
-                value={formData.experience}
+                value={formData.experience || ''}
                 onChange={handleChange}
                 required
               />
@@ -85,7 +142,7 @@ function CandidateRegistration() {
                 type="text"
                 name="prev_position"
                 placeholder="Enter your previous position"
-                value={formData.prev_position}
+                value={formData.prev_position || ''}
                 onChange={handleChange}
                 required
               />
@@ -98,14 +155,20 @@ function CandidateRegistration() {
                 rows={3}
                 name="qualifications"
                 placeholder="Enter your qualifications"
-                value={formData.qualifications}
+                value={formData.qualifications || ''}
                 onChange={handleChange}
                 required
               />
             </Form.Group>
 
             <Button disabled={loading} variant="primary" type="submit">
-              {loading?'Creating...':'Submit'}
+              {loading ? 'Creating...' : 'Submit'}
+            </Button>
+            <Button variant="secondary" onClick={handleUpdate} disabled={loading}>
+              {loading ? 'Updating...' : 'Update'}
+            </Button>
+            <Button variant="danger" onClick={handleDelete} disabled={loading}>
+              {loading ? 'Deleting...' : 'Delete'}
             </Button>
           </Form>
         </Col>
