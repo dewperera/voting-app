@@ -46,40 +46,61 @@ function CandidateRegistration() {
     setLoading(true);
     candidatesAPI.getCandidateById(candidateID)
       .then(res => {
-        setFormData(res.data);
-        setMessage('Candidate found!');
+        if (res.data) {
+          setFormData(res.data);
+          setMessage('Candidate found!');
+        } else {
+          setMessage('Candidate not found.');
+        }
         setLoading(false);
       })
       .catch(err => {
-        setMessage('Candidate not found.');
+        setMessage('Error fetching candidate.');
         setLoading(false);
       });
-  };
+};
+
 
   const handleUpdate = (e) => {
     e.preventDefault();
+    if (!candidateID) {
+      setMessage('Please enter a Candidate ID to update.');
+      return;
+    }
+    
     setLoading(true);
+    console.log('Updating candidate with ID:', candidateID); // Debugging log
     candidatesAPI.updateCandidate(candidateID, formData)
       .then(res => {
+        console.log('Candidate updated successfully:', res.data); // Debugging log
         setMessage('Candidate updated successfully!');
         setLoading(false);
       })
       .catch(err => {
+        console.error('Error updating candidate:', err.response ? err.response.data : err.message); // Improved error logging
         setMessage('Error updating candidate.');
         setLoading(false);
       });
   };
 
   const handleDelete = () => {
+    if (!candidateID) {
+      setMessage('Please enter a Candidate ID to delete.');
+      return;
+    }
+    
     setLoading(true);
+    console.log('Deleting candidate with ID:', candidateID); // Debugging log
     candidatesAPI.deleteCandidate(candidateID)
       .then(res => {
+        console.log('Candidate deleted successfully:', res.data); // Debugging log
         setMessage('Candidate deleted successfully!');
         setFormData({});
         setCandidateID('');
         setLoading(false);
       })
       .catch(err => {
+        console.error('Error deleting candidate:', err.response ? err.response.data : err.message); // Improved error logging
         setMessage('Error deleting candidate.');
         setLoading(false);
       });
@@ -98,7 +119,6 @@ function CandidateRegistration() {
           {message && <Alert variant={message.includes('Error') ? 'danger' : 'success'}>{message}</Alert>}
 
           <Form onSubmit={handleSubmit}>
-            {/* Candidate ID field should not be required for creation */}
             <Form.Group controlId="formCandidateID">
               <Form.Label>Candidate ID (For Search, Update, and Delete)</Form.Label>
               <Form.Control
@@ -114,16 +134,16 @@ function CandidateRegistration() {
             </Form.Group>
 
             <Form.Group controlId="formName">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type="text"
-                name="cname"
-                placeholder="Enter your name"
-                value={formData.cname || ''}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
+  <Form.Label>Name</Form.Label>
+  <Form.Control
+    type="text"
+    name="cname"
+    placeholder="Enter candidate name"
+    value={formData.cname || ''}
+    onChange={handleChange}
+    required
+  />
+</Form.Group>
 
             <Form.Group controlId="formAge">
               <Form.Label>Age</Form.Label>
