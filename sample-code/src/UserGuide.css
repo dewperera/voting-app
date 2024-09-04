@@ -1,41 +1,44 @@
 .user-guide-page {
-  height: 100vh; /* Full viewport height */
+  height:80vh; /* Full viewport height */
   overflow-y: auto; /* Allow scrolling */
-  /* padding: 20px; */
-  background-color: #f8f9fa;
-  /* box-sizing: border-box; */
+   /* padding: 20px;  */
+  background-color: #f7f7f7;
+  box-sizing: border-box;
   text-align: left;
 }
+
 
 
 .user-guide-page::-webkit-scrollbar {
   display: none; /* Hide scrollbar in Chrome, Safari, and Opera */
 }
 
-.user-guide-heading {
+/* .user-guide-heading {
   font-size: 2.5em;
-  color: #343a40; /* Dark color for headings */
-  margin-bottom: 0.5em;
-  margin-top: 0; /* Ensure no extra margin at the top */
-  text-align: left; /* Left-align the heading */
-}
+  color: #343a40; 
+  margin-bottom: 0;
+  margin-top: 0.5em; 
+  text-align: center; 
+} */
 
 .user-guide-subheading {
   font-size: 1.2em;
+  font-style:italic ;
   color: #6c757d; /* Subtle color for subheading */
-  margin-bottom: 1em;
-  text-align: left; /* Left-align the subheading */
-}
+ margin-bottom: 0;
+  /* text-align: left; Left-align the subheading */ 
+} 
 
 .user-guide-section-heading {
   font-size: 1.8em;
   color: #007bff; /* Primary color for section headings */
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
   text-align: left; /* Left-align the section heading */
 }
 
 p {
-  line-height: 1.6; /* Improved readability */
+  font-size: 1.1em;
+  line-height: 3; /* Improved readability */
   color: #495057;
   text-align: left;
   margin: 0; /* Ensure no extra margins are affecting the layout */

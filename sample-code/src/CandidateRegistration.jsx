@@ -1,17 +1,18 @@
 // src/CandidateRegistration.jsx
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Container, Form, Button, Col, Row } from 'react-bootstrap';
-import './CandidateRegistration.css'; // Custom CSS file
+import './CandidateRegistration.css';
+import {candidatesAPI} from "./api/candidatesAPI.js"; // Custom CSS file
 
 function CandidateRegistration() {
   const [formData, setFormData] = useState({
-    name: '',
-    age: '',
-    experience: '',
-    previousPosition: '',
-    qualifications: ''
+    // cname: 'Dilshan',
+    // age: '34',
+    // experience: 11,
+    // prev_position: 'Minister',
+    // qualifications: 'O/L'
   });
-
+  const [loading, setLoading] = useState(false);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevData => ({
@@ -24,6 +25,15 @@ function CandidateRegistration() {
     e.preventDefault();
     // Handle form submission
     console.log('Form submitted', formData);
+    setLoading(true)
+    candidatesAPI.createCandidate(formData).then(res=>{
+      console.log(res.data)
+      setLoading(false)
+    }).catch(err=>{
+      console.log(err)
+      setLoading(false)
+    })
+
   };
 
   return (
@@ -36,9 +46,9 @@ function CandidateRegistration() {
               <Form.Label>Name</Form.Label>
               <Form.Control
                 type="text"
-                name="name"
+                name="cname"
                 placeholder="Enter your name"
-                value={formData.name}
+                value={formData.cname}
                 onChange={handleChange}
                 required
               />
@@ -73,9 +83,9 @@ function CandidateRegistration() {
               <Form.Label>Previous Position</Form.Label>
               <Form.Control
                 type="text"
-                name="previousPosition"
+                name="prev_position"
                 placeholder="Enter your previous position"
-                value={formData.previousPosition}
+                value={formData.prev_position}
                 onChange={handleChange}
                 required
               />
@@ -94,8 +104,8 @@ function CandidateRegistration() {
               />
             </Form.Group>
 
-            <Button variant="primary" type="submit">
-              Submit
+            <Button disabled={loading} variant="primary" type="submit">
+              {loading?'Creating...':'Submit'}
             </Button>
           </Form>
         </Col>

@@ -1,14 +1,14 @@
 // src/CandidateRegistration.jsx
 import React, { useState } from 'react';
 import { Container, Form, Button, Col, Row } from 'react-bootstrap';
-import './VoterRegistration.css'; // Custom CSS file
+import './VoterRegistration.css';
+import {votingAPI} from "./api/votingAPI.js"; // Custom CSS file
 
 function VoterRegistration() {
   const [formData, setFormData] = useState({
     name: '',
-    party: '',
-    manifesto: '',
-    photo: null
+    nic: '',
+    age: ''
   });
 
   const handleChange = (e) => {
@@ -23,6 +23,11 @@ function VoterRegistration() {
     e.preventDefault();
     // Handle form submission
     console.log('Form submitted', formData);
+    votingAPI.createVote(formData).then(res=>{
+      console.log(res.data)
+    }).catch(err=>{
+      console.log(err)
+    })
   };
 
   return (
@@ -36,7 +41,7 @@ function VoterRegistration() {
               <Form.Label>NIC</Form.Label>
               <Form.Control
                 type="text"
-                name="Experience"
+                name="nic"
                 placeholder="Enter your NIC"
                 value={formData.nic}
                 onChange={handleChange}
@@ -48,7 +53,7 @@ function VoterRegistration() {
               <Form.Label>Name</Form.Label>
               <Form.Control
                 type="text"
-                name="Name"
+                name="name"
                 placeholder="Enter your name"
                 value={formData.name}
                 onChange={handleChange}
@@ -60,15 +65,13 @@ function VoterRegistration() {
               <Form.Label>Age</Form.Label>
               <Form.Control
                 type="text"
-                name="Age"
+                name="age"
                 placeholder="Enter your age"
                 value={formData.age}
                 onChange={handleChange}
                 required
               />
             </Form.Group>
-
-            
 
             <Button variant="primary" type="submit">
               Submit
