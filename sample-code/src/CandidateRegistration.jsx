@@ -26,49 +26,63 @@ function CandidateRegistration() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    candidatesAPI.createCandidate(formData).then(res => {
-      setMessage('Candidate created successfully!');
-      setLoading(false);
-    }).catch(err => {
-      setMessage('Error creating candidate.');
-      setLoading(false);
-    });
+    console.log('Submitting candidate with data:', formData); // Debugging log
+    candidatesAPI.createCandidate(formData)
+      .then(res => {
+        console.log('Candidate created successfully:', res.data); // Debugging log
+        setMessage('Candidate created successfully!');
+        setLoading(false);
+        setFormData({}); // Clear the form after submission
+        setCandidateID(''); // Clear candidateID after submission
+      })
+      .catch(err => {
+        console.error('Error creating candidate:', err.response ? err.response.data : err.message); // Improved error logging
+        setMessage('Error creating candidate.');
+        setLoading(false);
+      });
   };
 
   const handleSearch = () => {
     setLoading(true);
-    candidatesAPI.getCandidateById(candidateID).then(res => {
-      setFormData(res.data);
-      setMessage('Candidate found!');
-      setLoading(false);
-    }).catch(err => {
-      setMessage('Candidate not found.');
-      setLoading(false);
-    });
+    candidatesAPI.getCandidateById(candidateID)
+      .then(res => {
+        setFormData(res.data);
+        setMessage('Candidate found!');
+        setLoading(false);
+      })
+      .catch(err => {
+        setMessage('Candidate not found.');
+        setLoading(false);
+      });
   };
 
   const handleUpdate = (e) => {
     e.preventDefault();
     setLoading(true);
-    candidatesAPI.updateCandidate(candidateID, formData).then(res => {
-      setMessage('Candidate updated successfully!');
-      setLoading(false);
-    }).catch(err => {
-      setMessage('Error updating candidate.');
-      setLoading(false);
-    });
+    candidatesAPI.updateCandidate(candidateID, formData)
+      .then(res => {
+        setMessage('Candidate updated successfully!');
+        setLoading(false);
+      })
+      .catch(err => {
+        setMessage('Error updating candidate.');
+        setLoading(false);
+      });
   };
 
   const handleDelete = () => {
     setLoading(true);
-    candidatesAPI.deleteCandidate(candidateID).then(res => {
-      setMessage('Candidate deleted successfully!');
-      setFormData({});
-      setLoading(false);
-    }).catch(err => {
-      setMessage('Error deleting candidate.');
-      setLoading(false);
-    });
+    candidatesAPI.deleteCandidate(candidateID)
+      .then(res => {
+        setMessage('Candidate deleted successfully!');
+        setFormData({});
+        setCandidateID('');
+        setLoading(false);
+      })
+      .catch(err => {
+        setMessage('Error deleting candidate.');
+        setLoading(false);
+      });
   };
 
   if (!isLoggedIn) {
@@ -84,15 +98,15 @@ function CandidateRegistration() {
           {message && <Alert variant={message.includes('Error') ? 'danger' : 'success'}>{message}</Alert>}
 
           <Form onSubmit={handleSubmit}>
+            {/* Candidate ID field should not be required for creation */}
             <Form.Group controlId="formCandidateID">
-              <Form.Label>Candidate ID</Form.Label>
+              <Form.Label>Candidate ID (For Search, Update, and Delete)</Form.Label>
               <Form.Control
                 type="text"
                 name="candidateID"
                 placeholder="Enter candidate ID"
                 value={candidateID}
                 onChange={(e) => setCandidateID(e.target.value)}
-                required
               />
               <Button variant="primary" onClick={handleSearch} disabled={loading}>
                 {loading ? 'Searching...' : 'Search'}
@@ -164,10 +178,10 @@ function CandidateRegistration() {
             <Button disabled={loading} variant="primary" type="submit">
               {loading ? 'Creating...' : 'Submit'}
             </Button>
-            <Button variant="secondary" onClick={handleUpdate} disabled={loading}>
+            <Button variant="secondary" onClick={handleUpdate} disabled={loading || !candidateID}>
               {loading ? 'Updating...' : 'Update'}
             </Button>
-            <Button variant="danger" onClick={handleDelete} disabled={loading}>
+            <Button variant="danger" onClick={handleDelete} disabled={loading || !candidateID}>
               {loading ? 'Deleting...' : 'Delete'}
             </Button>
           </Form>
@@ -178,7 +192,3 @@ function CandidateRegistration() {
 }
 
 export default CandidateRegistration;
-
-
-
-
