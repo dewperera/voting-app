@@ -17,10 +17,15 @@ export const candidatesAPI = {
                 throw error; // Rethrow the error to be caught by the calling function
             });
     },
-    updateCandidate: (id, payload) => {
-        return axios.put(`${backendService1}/candidates/${id}`, payload);
+    updateCandidate: (cid, payload) => {
+        return axios.put(`${backendService1}candidates/${cid}`, payload)
+            .catch(error => {
+                console.error('Error updating candidate:', error.response ? error.response.data : error.message);
+                throw error; // Rethrow the error to be caught by the calling function
+            });
     },
-    deleteCandidate: (id) => {
-        return axios.delete(`${backendService1}/candidates/${id}`);
+    deleteCandidate: (cid) => {
+        return axios.delete(`${backendService1}candidates/${cid}`);
     }
 };
+
