@@ -116,7 +116,7 @@ body, html {
 }
 
 .navbar-custom .navbar-toggler-icon {
-  background-image: url('C:\Users\DELL\Downloads\vote.jpeg'); /* Correct path to the image */
+  background-image: url('/vote.jpeg'); /* Correct path to the image */
   background-size: cover; /* Ensure the image covers the area */
   background-repeat: no-repeat; /* Prevent image from repeating */
   width: 30px; /* Adjust width as needed */

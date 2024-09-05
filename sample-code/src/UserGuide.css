@@ -1,10 +1,11 @@
 .user-guide-page {
   height:80vh; /* Full viewport height */
   overflow-y: auto; /* Allow scrolling */
-   /* padding: 20px;  */
+   padding: 20px;  
   background-color: #f7f7f7;
   box-sizing: border-box;
   text-align: left;
+ 
 }
 
 
@@ -32,13 +33,13 @@
 .user-guide-section-heading {
   font-size: 1.8em;
   color: #007bff; /* Primary color for section headings */
-  margin-bottom: 0.5em;
+  margin-bottom: 1.5em;
   text-align: left; /* Left-align the section heading */
 }
 
 p {
   font-size: 1.1em;
-  line-height: 3; /* Improved readability */
+  line-height: 1.5; /* Improved readability */
   color: #495057;
   text-align: left;
   margin: 0; /* Ensure no extra margins are affecting the layout */

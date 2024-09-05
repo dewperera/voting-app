@@ -1,13 +1,15 @@
 // src/CandidateRegistration.jsx
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Container, Form, Button, Col, Row } from 'react-bootstrap';
 import './VoterRegistration.css';
-import {votingAPI} from "./api/votingAPI.js"; // Custom CSS file
+import {votingAPI} from "./api/votingAPI.js";
+
 
 function VoterRegistration() {
   const [formData, setFormData] = useState({
+    
+    vid: '',
     name: '',
-    nic: '',
     age: ''
   });
 
@@ -23,7 +25,7 @@ function VoterRegistration() {
     e.preventDefault();
     // Handle form submission
     console.log('Form submitted', formData);
-    votingAPI.createVote(formData).then(res=>{
+    votingAPI.addVoter(formData).then(res=>{
       console.log(res.data)
     }).catch(err=>{
       console.log(err)
@@ -41,9 +43,9 @@ function VoterRegistration() {
               <Form.Label>NIC</Form.Label>
               <Form.Control
                 type="text"
-                name="nic"
+                name="vid"
                 placeholder="Enter your NIC"
-                value={formData.nic}
+                value={formData.vid}
                 onChange={handleChange}
                 required
               />
@@ -72,6 +74,7 @@ function VoterRegistration() {
                 required
               />
             </Form.Group>
+
 
             <Button variant="primary" type="submit">
               Submit

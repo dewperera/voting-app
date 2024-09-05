@@ -10,9 +10,9 @@ function UserGuide() {
         <Row className="mb-5">
           <Col>
             {/* <h1 className="text-center user-guide-heading">User Guide</h1> */}
-            <p className="text-center user-guide-subheading">
+            <h className="text-center user-guide-subheading">
               Welcome to the Smart Vote App! Follow this guide to navigate through the app and participate in the elections with ease.
-            </p>
+            </h>
           </Col>
         </Row>
         
