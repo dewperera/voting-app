@@ -26,19 +26,25 @@ function VoterRegistration() {
     
     votingAPI.addVoter(formData)
       .then(res => {
-        console.log(res.data);
-        setFormData({
-          vid: '',
-          name: '',
-          age: ''
-        }); // Reset the form fields
-        setMessage('Voter registered successfully!'); // Set success message
+        if (res.data.exists) {
+          setMessage('Voter ID already registered.'); // Handle case where voter ID already exists
+        } else {
+          console.log(res.data);
+          setFormData({
+            vid: '',
+            name: '',
+            age: ''
+          }); // Reset the form fields
+          setMessage('Voter registered successfully!'); // Set success message
+        }
       })
       .catch(err => {
         console.log(err);
         setMessage('Error registering voter.'); // Set error message
       });
   };
+  
+  
 
   return (
     <Container className="voter-registration-page">
