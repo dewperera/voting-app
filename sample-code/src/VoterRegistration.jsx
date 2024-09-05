@@ -1,17 +1,16 @@
-// src/CandidateRegistration.jsx
 import { useState } from 'react';
 import { Container, Form, Button, Col, Row } from 'react-bootstrap';
 import './VoterRegistration.css';
-import {votingAPI} from "./api/votingAPI.js";
-
+import { votingAPI } from "./api/votingAPI.js";
 
 function VoterRegistration() {
   const [formData, setFormData] = useState({
-    
     vid: '',
     name: '',
     age: ''
   });
+
+  const [message, setMessage] = useState(''); // State for success message
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -23,13 +22,22 @@ function VoterRegistration() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission
     console.log('Form submitted', formData);
-    votingAPI.addVoter(formData).then(res=>{
-      console.log(res.data)
-    }).catch(err=>{
-      console.log(err)
-    })
+    
+    votingAPI.addVoter(formData)
+      .then(res => {
+        console.log(res.data);
+        setFormData({
+          vid: '',
+          name: '',
+          age: ''
+        }); // Reset the form fields
+        setMessage('Voter registered successfully!'); // Set success message
+      })
+      .catch(err => {
+        console.log(err);
+        setMessage('Error registering voter.'); // Set error message
+      });
   };
 
   return (
@@ -37,9 +45,9 @@ function VoterRegistration() {
       <Row>
         <Col>
           <h3 className="text-center">Voter Registration Form</h3>
+          {message && <p className="text-success text-center">{message}</p>} {/* Display success message */}
           <Form onSubmit={handleSubmit}>
-
-          <Form.Group controlId="formNic">
+            <Form.Group controlId="formNic">
               <Form.Label>NIC</Form.Label>
               <Form.Control
                 type="text"
@@ -74,7 +82,6 @@ function VoterRegistration() {
                 required
               />
             </Form.Group>
-
 
             <Button variant="primary" type="submit">
               Submit
