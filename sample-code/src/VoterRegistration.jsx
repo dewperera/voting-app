@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Container, Form, Button, Col, Row } from 'react-bootstrap';
+import { Container, Form, Button, Col, Row, Alert } from 'react-bootstrap';
 import './VoterRegistration.css';
 import { votingAPI } from "./api/votingAPI.js";
 
@@ -10,48 +10,71 @@ function VoterRegistration() {
     age: ''
   });
 
-  const [message, setMessage] = useState(''); // State for success message
+  const [message, setMessage] = useState('');
+  const [messageType, setMessageType] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [errorFields, setErrorFields] = useState({}); // New state for error fields
 
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
+    const { name, value } = e.target;
     setFormData(prevData => ({
       ...prevData,
-      [name]: files ? files[0] : value
+      [name]: value
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted', formData);
-    
-    votingAPI.addVoter(formData)
+    setLoading(true);
+    setMessage('');
+    setMessageType('');
+    setErrorFields({}); // Reset error fields
+
+    // Check if NIC is already registered
+    votingAPI.checkVoter(formData.vid)
       .then(res => {
         if (res.data.exists) {
-          setMessage('Voter ID already registered.'); // Handle case where voter ID already exists
+          setMessage('The entered NIC is already registered.');
+          setMessageType('danger');
+          setErrorFields({ vid: true }); // Highlight NIC field
         } else {
-          console.log(res.data);
-          setFormData({
-            vid: '',
-            name: '',
-            age: ''
-          }); // Reset the form fields
-          setMessage('Voter registered successfully!'); // Set success message
+          // If NIC is not registered, proceed with registration
+          votingAPI.addVoter(formData)
+            .then(res => {
+              setFormData({
+                vid: '',
+                name: '',
+                age: ''
+              }); // Reset the form fields
+              setMessage('Voter registered successfully!');
+              setMessageType('success');
+            })
+            .catch(err => {
+              console.error('Error registering voter:', err.response ? err.response.data : err.message);
+              setMessage('Error registering voter.');
+              setMessageType('danger');
+            });
         }
+        setLoading(false);
       })
       .catch(err => {
-        console.log(err);
-        setMessage('Error registering voter.'); // Set error message
+        console.error('Error checking voter ID:', err.response ? err.response.data : err.message);
+        setMessage('Error checking voter ID.');
+        setMessageType('danger');
+        setLoading(false);
       });
   };
-  
-  
 
   return (
     <Container className="voter-registration-page">
       <Row>
         <Col>
           <h3 className="text-center">Voter Registration Form</h3>
-          {message && <p className="text-success text-center">{message}</p>} {/* Display success message */}
+          {message && (
+            <Alert variant={messageType} className="mb-3">
+              {message}
+            </Alert>
+          )}
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formNic">
               <Form.Label>NIC</Form.Label>
@@ -61,6 +84,7 @@ function VoterRegistration() {
                 placeholder="Enter your NIC"
                 value={formData.vid}
                 onChange={handleChange}
+                className={errorFields.vid ? 'input-error' : ''}
                 required
               />
             </Form.Group>
@@ -89,8 +113,8 @@ function VoterRegistration() {
               />
             </Form.Group>
 
-            <Button variant="primary" type="submit">
-              Submit
+            <Button variant="primary" type="submit" disabled={loading}>
+              {loading ? 'Submitting...' : 'Submit'}
             </Button>
           </Form>
         </Col>
@@ -100,3 +124,8 @@ function VoterRegistration() {
 }
 
 export default VoterRegistration;
+
+
+
+
+
