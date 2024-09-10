@@ -124,8 +124,3 @@ function VoterRegistration() {
 }
 
 export default VoterRegistration;
-
-
-
-
-

@@ -1,16 +1,55 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Election.css';
 
 function Election() {
+  const [showCandidates, setShowCandidates] = useState(false);
+  const [candidates, setCandidates] = useState([]);
+
+  // Fetch candidate data from the server when the component mounts
+  useEffect(() => {
+    if (showCandidates) {
+      // Replace with your API endpoint to fetch candidates
+      fetch('/api/candidates')
+        .then(response => response.json())
+        .then(data => setCandidates(data))
+        .catch(error => console.error('Error fetching candidates:', error));
+    }
+  }, [showCandidates]);
+
+  const handleViewCandidates = () => {
+    setShowCandidates(!showCandidates);
+  };
+
   return (
     <div className="cast-votes-container">
-      <div className="header"><h3><b>CANDIDATES</b></h3></div>
-      <div className="button-group">
-      <label className="candidate-label1 pink">01</label>
-        <label className="candidate-label1 green">02</label>
-        <label className="candidate-label1 dark-green">03</label>
-        <label className="candidate-label1 red">04</label>
-      </div>
+      <button className="candidates-button" onClick={handleViewCandidates}>
+        {showCandidates ? 'Hide Candidates' : 'View Candidates'}
+      </button>
+      {showCandidates && (
+        <div className="candidate-table">
+          <h2 className="candidate-title">Candidates List</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Party</th>
+                {/* Add other columns as needed */}
+              </tr>
+            </thead>
+            <tbody>
+              {candidates.map(candidate => (
+                <tr key={candidate.id}>
+                  <td>{candidate.id}</td>
+                  <td>{candidate.name}</td>
+                  <td>{candidate.party}</td>
+                  {/* Render other columns as needed */}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
       <div className="vote-box">
         <h2 className="vote-title">CAST VOTES</h2>
         <div className="input-group">
@@ -28,3 +67,4 @@ function Election() {
 }
 
 export default Election;
+
