@@ -1,12 +1,25 @@
 import React, { useState } from 'react';
 import './results.css';
+import Election from './Election'; // Import the Election component
 
 function Results() {
-  // State variables to manage the input values for each candidate
   const [candidate1, setCandidate1] = useState('');
   const [candidate2, setCandidate2] = useState('');
   const [candidate3, setCandidate3] = useState('');
   const [candidate4, setCandidate4] = useState('');
+  
+  // State to control the navigation to Election component
+  const [showElection, setShowElection] = useState(false);
+
+  // Function to handle the "Election" button click
+  const handleElectionClick = () => {
+    setShowElection(true);
+  };
+
+  // If showElection is true, render the Election component
+  if (showElection) {
+    return <Election />;
+  }
 
   return (
     <div className="container">
@@ -60,10 +73,9 @@ function Results() {
         <div className="result candidate-4">%</div>
       </div>
 
-      <button className="election-button">Election</button>
+      <button className="election-button" onClick={handleElectionClick}>Election</button>
     </div>
   );
 }
 
 export default Results;
-
