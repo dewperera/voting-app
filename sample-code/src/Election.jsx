@@ -8,7 +8,6 @@ function Election() {
   const [voters, setVoters] = useState([]);
   const [selectedCandidate, setSelectedCandidate] = useState('');
   const [selectedVoter, setSelectedVoter] = useState('');
-  const [message, setMessage] = useState('');
 
   // Pre-fetch candidate data when component mounts
   useEffect(() => {
@@ -36,7 +35,7 @@ function Election() {
 
   const handleVote = () => {
     if (!selectedCandidate || !selectedVoter) {
-      setMessage('Please select both a candidate and a voter.');
+      window.alert('Please select both a candidate and a voter.');
       return;
     }
 
@@ -47,10 +46,13 @@ function Election() {
 
     electionAPI.createVote(votePayload)
       .then(() => {
-        setMessage('Vote cast successfully!');
+        window.alert('Vote cast successfully!'); // Show prompt message
+        // Clear selected items
+        setSelectedCandidate('');
+        setSelectedVoter('');
       })
       .catch(error => {
-        setMessage(`Error casting vote: ${error.message}`);
+        window.alert(`Error casting vote: ${error.message}`); // Show prompt message for errors
       });
   };
 
@@ -71,7 +73,7 @@ function Election() {
                   <th>ID</th>
                   <th>Name</th>
                   <th>Experience</th>
-                  <th>Qualifications</th> {/* New column for qualifications */}
+                  <th>Qualifications</th>
                 </tr>
               </thead>
               <tbody>
@@ -80,7 +82,7 @@ function Election() {
                     <td>{candidate.cid}</td>
                     <td>{candidate.cname}</td>
                     <td>{candidate.experience}</td>
-                    <td>{candidate.qualifications}</td> {/* New column data */}
+                    <td>{candidate.qualifications}</td>
                   </tr>
                 ))}
               </tbody>
