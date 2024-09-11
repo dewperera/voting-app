@@ -1,14 +1,51 @@
-/* App.css */
+/* Enhanced Election-themed Navbar */
 .navbar-custom {
-  background: linear-gradient(135deg, #007bff, #6f42c1); /* Blue to Purple gradient */
+  background: linear-gradient(135deg, #0047ab, #d32f2f); /* Blue to Red gradient */
   color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
-/* App.css */
-.navbar-custom .navbar-nav .nav-link {
-  position: relative;
+.navbar-custom .navbar-brand, 
+.navbar-custom .nav-link {
+  color: white;
+  font-weight: bold; /* Make links bold for visibility */
+  padding-left: 15px; /* Add some spacing for comfort */
+  padding-right: 15px;
 }
 
+.navbar-custom .navbar-link-icon {
+  margin-right: 8px; /* Add spacing between icon and text */
+}
+
+.navbar-custom .nav-link:hover {
+  color: #ffd700;
+}
+
+/* Call-to-action button */
+.navbar-custom .cta-button {
+  background-color: #ffd700;
+  color: #0047ab;
+  padding: 8px 16px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-left: auto; /* Pushes the button to the far right */
+}
+
+.navbar-custom .cta-button:hover {
+  background-color: #ffeb3b; /* Lighter gold on hover */
+  color: #002d72;
+}
+
+.navbar-custom .navbar-toggler-icon {
+  background-image: url('/vote.jpeg'); 
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 30px;
+}
+
+/* Hover underline effect */
 .navbar-custom .navbar-nav .nav-link::after {
   content: '';
   position: absolute;
@@ -16,110 +53,127 @@
   bottom: 0;
   width: 100%;
   height: 2px;
-  background: #f8f9fa; /* Light color line */
+  background: #ffd700; 
   transform: scaleX(0);
-  transition: transform 0.3s;
+  transition: transform 0.3s ease-in-out;
 }
 
 .navbar-custom .navbar-nav .nav-link:hover::after {
   transform: scaleX(1);
 }
 
-/* App.css */
-@media (max-width: 768px) {
-  .navbar-custom .navbar-toggler-icon {
-    background: #fff; /* White icon for better visibility */
-  }
-  
-  .navbar-custom .navbar-collapse {
-    background: #007bff; /* Match background color */
-  }
-}
-
-
-
-/* Ensure there's no default margin or padding affecting layout */
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
-
-/* Navbar container to position it at the top left */
+/* Fixed Navbar */
 .navbar-container {
-  position: fixed; /* Fixes the navbar at the top of the viewport */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000; /* Ensures the navbar is on top of other content */
-  background-color: hwb(146 10% 34% / 0.607); /* Set background color for better visibility if needed */
+  z-index: 1000;
+  background-color: rgba(0, 71, 171, 0.85); 
 }
 
-/* Additional styling for the rest of the content */
+/* Spacing and styling for body */
+/* Background gradient for the body */
+/* Background for the body with a modern gradient and overlay effect */
+body {
+  background: linear-gradient(to bottom, #e0f7fa, #b2ebf2); /* Light blue gradient */
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Main content container with enhanced styling */
 #root {
-  margin-top: 4em; /* Adjust this based on the height of your navbar */
-  max-width: 1280px;
+  margin-top: 4em;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background: #ffffff; /* White background for the content area */
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Section styling with gradient background and subtle shadow */
+.section {
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, #ffeb3b, #ffc107); /* Yellow to Amber gradient */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  color: #333;
 }
 
-
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Button styles with vibrant color and hover effects */
+button {
+  background-color: #007bff; /* Primary blue color */
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 5px;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: scale(1.05); /* Slightly enlarge button */
 }
 
+/* Enhanced card styling with a modern look */
 .card {
   padding: 2em;
+  background-color: #ffffff;
+  border: 1px solid #dcdcdc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  margin-bottom: 2rem;
+  border-radius: 8px; /* Rounded corners */
+  transition: box-shadow 0.3s, transform 0.3s;
 }
 
-.read-the-docs {
-  color: #888;
-}
-/* App.css */
-.navbar-custom {
-  background-color: #75c3f0; /* Replace with your desired color */
+.card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+  transform: translateY(-5px); /* Lift card effect */
 }
 
-.navbar-custom .navbar-brand, 
-.navbar-custom .nav-link {
-  color: #350505; /* Set text color for links and brand */
+/* Footer styling with a vibrant background */
+footer {
+  background: #0047ab; /* Election-themed blue */
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
 }
 
-.navbar-custom .nav-link:hover {
-  color: #e0e0e0; /* Set text color on hover */
+/* Typography enhancements */
+h1, h2, h3 {
+  color: #0047ab; /* Election-themed blue */
+  margin-bottom: 0.5rem;
 }
 
-.navbar-custom .navbar-toggler-icon {
-  background-image: url('/vote.jpeg'); /* Correct path to the image */
-  background-size: cover; /* Ensure the image covers the area */
-  background-repeat: no-repeat; /* Prevent image from repeating */
-  width: 30px; /* Adjust width as needed */
-  height: 30px; /* Adjust height as needed */
+p {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
 }
 
+/* Media queries for better responsiveness */
+@media (max-width: 768px) {
+  #root {
+    padding: 1rem;
+    margin-top: 6em;
+  }
+
+  .card {
+    padding: 1.5em;
+  }
+
+  button {
+    width: 100%;
+  }
+}

@@ -1,28 +1,53 @@
+.container {
+  width: 100%;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.candidates-button {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 100%; /* Adjusted to fit container width */
+  margin-bottom: 20px;
+  margin-top: 40px;
+}
+
+.candidates-button:hover {
+  background-color: #2a587a;
+}
+
 .cast-votes-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.vote-form {
-  display: flex;
   justify-content: space-between;
-  width: 70%;
-  align-items: center; /* Ensures the button is aligned with the form */
 }
 
-.vote-box {
+.vote-box, .candidate-table {
   background-color: #c2c9cd;
   padding: 30px;
   border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(85, 42, 42, 0.251);
+  box-shadow: 0 4px 8px rgba(82, 54, 54, 0.251);
   text-align: center;
-  width: 300px;
+  width: 100%; /* Adjusted to fit container width */
+  max-width: 500px; /* Set a max-width for responsive design */
 }
 
-.vote-title {
-  background-color: rgb(41, 93, 102);
+.vote-box {
+  margin-left: 20px; /* Space between form and candidate table */
+}
+
+.candidate-table {
+  margin-right: 20px; /* Space between table and form */
+}
+
+.vote-title, .candidate-title {
+  background: linear-gradient(135deg, #042c77, #0569ff);
   color: white;
   font-size: 18px;
   padding: 5px;
@@ -31,12 +56,14 @@
 
 .input-group {
   margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
 .voter-label, .candidate-label {
-  display: block;
-  font-weight: bold;
-  color: black;
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #495057;
 }
 
 .voter-input, .candidate-input {
@@ -48,77 +75,43 @@
   margin-top: 5px;
   color: black;
   font-size: 16px;
-  appearance: none;  /* Remove the default dropdown styling */
+  appearance: none; 
 }
-
-select option {
-  color: black;  /* Ensure text inside the options is black */
-  background-color: white;  /* Background color of dropdown options */
-  padding: 10px;  /* Spacing inside the options for better visibility */
-}
-
-select:focus {
-  outline: none;  /* Remove the focus outline */
-  border: 2px solid #ab2020;  /* Highlight the border when focused */
-}
-
 
 .cast-button {
-  background-color: #ab2020;
+  background-color: #314d5a;
   color: white;
   border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
+  padding: 10px;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  border-radius: 4px;
+  width: 100%;
 }
 
 .cast-button:hover {
-  background-color: #388e3c;
+  background-color: #0056b3;
 }
 
-.button-container {
-  margin-left: 20px;
-}
-
-.candidates-button {
-  background-color: #820aba;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 20px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.candidates-button:hover {
-  background-color: #5c0e87;
-}
-
-.candidate-table {
-  margin-top: 30px;
-  width: 70%;
-}
-
-.candidate-table table {
+table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
 }
 
-.candidate-table th, .candidate-table td {
+table th, table td {
+  border: 1px solid #dee2e6;
   padding: 10px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
 }
 
-.candidate-table th {
-  background-color: #f2f2f2;
+table th {
+  background-color: #f1f1f1;
 }
 
-.candidate-title {
-  font-size: 24px;
-  margin-bottom: 10px;
+table td {
+  background-color: #ffffff;
+}
+
+table th, table td {
+  min-width: 100px; /* Ensures columns have a minimum width */
 }
