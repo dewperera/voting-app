@@ -9,6 +9,7 @@ function Results() {
   const [error, setError] = useState(null);
   const [winner, setWinner] = useState(null);
   const [showLogin, setShowLogin] = useState(true); // State to control login form visibility
+  const [message, setMessage] = useState(''); // State for feedback messages
   const navigate = useNavigate();
 
   // Function to fetch vote results from the backend
@@ -38,6 +39,17 @@ function Results() {
     }
   };
 
+  // Function to clear votes
+  const clearVotes = async () => {
+    try {
+      await axios.delete('http://localhost:8082/api/votes/clear');
+      setMessage('Votes cleared successfully!');
+    } catch (error) {
+      console.error('Error clearing votes:', error.response ? error.response.data : error.message);
+      setError('Error clearing votes.');
+    }
+  };
+
   // Fetch results when component loads
   useEffect(() => {
     if (!showLogin) {
@@ -51,6 +63,18 @@ function Results() {
     fetchVoteResults();
   };
 
+  // Function to handle new election
+  const handleNewElection = async () => {
+    try {
+      await clearVotes();
+      console.log('Navigating to /results');
+      navigate('/results');
+    } catch (error) {
+      console.error('Error during new election process:', error);
+      setError('Error initiating new election.');
+    }
+  };
+
   if (showLogin) {
     return <LoginForm onLogin={handleLoginSuccess} />;
   }
@@ -62,6 +86,7 @@ function Results() {
       </div>
 
       {error && <p className="error">{error}</p>}
+      {message && <p className="message">{message}</p>}
 
       {winner && (
         <div className="winner-section">
@@ -90,7 +115,7 @@ function Results() {
         <button className="navigate-button" onClick={() => navigate('/election')}>
           Go to Election
         </button>
-        <button className="new-election-button" onClick={() => navigate('/new-election')}>
+        <button className="new-election-button" onClick={handleNewElection}>
           New Election
         </button>
       </div>
