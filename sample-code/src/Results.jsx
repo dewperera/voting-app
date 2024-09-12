@@ -79,11 +79,17 @@ function Results() {
         </div>
       )}
 
-      <button className="navigate-button" onClick={() => navigate('/election')}>
-        Go to Election
-      </button>
+      <div className="button-group">
+        <button className="navigate-button" onClick={() => navigate('/election')}>
+          Go to Election
+        </button>
+        <button className="new-election-button" onClick={() => navigate('/new-election')}>
+          New Election
+        </button>
+      </div>
     </div>
   );
 }
 
 export default Results;
+

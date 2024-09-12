@@ -75,6 +75,19 @@
   transition: background-color 0.3s;
 }
 
+.new-election-button{
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: #007bff; /* Blue color for the button */
+  color: white;
+  font-size: 16px;
+  border-radius: 12px; /* Adjust this value to increase or decrease roundness */
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: 2%; 
+}
+
 .navigate-button:hover {
   background-color: #0056b3; /* Darker blue on hover */
 }
