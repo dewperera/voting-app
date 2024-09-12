@@ -1,64 +1,59 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import LoginForm from './LoginForm'; // Import LoginForm component
 import './results.css';
 
 function Results() {
   const [results, setResults] = useState([]);
   const [error, setError] = useState(null);
-  const [winner, setWinner] = useState(null); // State to hold the winner's information
-  const navigate = useNavigate(); // Initialize useNavigate
+  const [winner, setWinner] = useState(null);
+  const [showLogin, setShowLogin] = useState(true); // State to control login form visibility
+  const navigate = useNavigate();
 
   // Function to fetch vote results from the backend
   const fetchVoteResults = async () => {
     try {
       const response = await axios.get('http://localhost:8082/api/votes/countByCandidate');
-      
-      // Log the response data for debugging
-      console.log('Response data:', response.data);
-
       if (response.data && Object.keys(response.data).length > 0) {
         const formattedResults = Object.entries(response.data).map(([candidateId, voterCount]) => ({
           candidateId,
           voterCount
         }));
         setResults(formattedResults);
-        setError(null); // Clear error if fetch is successful
+        setError(null);
 
-        // Find the candidate with the most votes
         const highestVote = Math.max(...formattedResults.map(result => result.voterCount));
         const winningCandidate = formattedResults.find(result => result.voterCount === highestVote);
-        setWinner(winningCandidate); // Set the winner's information
+        setWinner(winningCandidate);
       } else {
-        console.log('No vote data found.');
         setResults([]);
-        setError('No results available.'); // Update error message
-        setWinner(null); // Clear winner if no results
+        setError('No results available.');
+        setWinner(null);
       }
     } catch (error) {
-      console.error('Error fetching election results:', error);
-      setResults([]); // Clear results on error
-      setError('Error fetching election results.'); // Set error message
-      setWinner(null); // Clear winner on error
+      setResults([]);
+      setError('Error fetching election results.');
+      setWinner(null);
     }
   };
 
   // Fetch results when component loads
   useEffect(() => {
-    fetchVoteResults();
-  }, []);
-
-  // Function to handle clearing votes and navigating to new election page
-  const handleNewElection = async () => {
-    try {
-      await axios.delete('http://localhost:8082/api/votes/clear');
-      window.alert('Vote table has been cleared.');
-      navigate('/new-election'); // Navigate to the new election page
-    } catch (error) {
-      window.alert('Error clearing vote table.');
-      console.error('Error clearing vote table:', error);
+    if (!showLogin) {
+      fetchVoteResults();
     }
+  }, [showLogin]);
+
+  // Function to handle successful login
+  const handleLoginSuccess = () => {
+    setShowLogin(false);
+    fetchVoteResults();
   };
+
+  if (showLogin) {
+    return <LoginForm onLogin={handleLoginSuccess} />;
+  }
 
   return (
     <div className="container">
@@ -95,7 +90,7 @@ function Results() {
         <button className="navigate-button" onClick={() => navigate('/election')}>
           Go to Election
         </button>
-        <button className="new-election-button" onClick={handleNewElection}>
+        <button className="new-election-button" onClick={() => navigate('/new-election')}>
           New Election
         </button>
       </div>
