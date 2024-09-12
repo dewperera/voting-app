@@ -48,6 +48,18 @@ function Results() {
     fetchVoteResults();
   }, []);
 
+  // Function to handle clearing votes and navigating to new election page
+  const handleNewElection = async () => {
+    try {
+      await axios.delete('http://localhost:8082/api/votes/clear');
+      window.alert('Vote table has been cleared.');
+      navigate('/new-election'); // Navigate to the new election page
+    } catch (error) {
+      window.alert('Error clearing vote table.');
+      console.error('Error clearing vote table:', error);
+    }
+  };
+
   return (
     <div className="container">
       <div className="header">
@@ -83,7 +95,7 @@ function Results() {
         <button className="navigate-button" onClick={() => navigate('/election')}>
           Go to Election
         </button>
-        <button className="new-election-button" onClick={() => navigate('/new-election')}>
+        <button className="new-election-button" onClick={handleNewElection}>
           New Election
         </button>
       </div>
@@ -92,4 +104,3 @@ function Results() {
 }
 
 export default Results;
-
