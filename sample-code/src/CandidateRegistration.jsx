@@ -2,18 +2,12 @@ import { useState } from 'react';
 import { Container, Form, Button, Col, Row, Alert } from 'react-bootstrap';
 import './CandidateRegistration.css';
 import { candidatesAPI } from "./api/candidatesAPI.js";
-import LoginForm from './LoginForm';
 
 function CandidateRegistration() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [formData, setFormData] = useState({});
   const [candidateID, setCandidateID] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(''); // For success/error messages
-
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -58,8 +52,7 @@ function CandidateRegistration() {
         setMessage('Error fetching candidate.');
         setLoading(false);
       });
-};
-
+  };
 
   const handleUpdate = (e) => {
     e.preventDefault();
@@ -67,7 +60,7 @@ function CandidateRegistration() {
       setMessage('Please enter a Candidate ID to update.');
       return;
     }
-    
+
     setLoading(true);
     console.log('Updating candidate with ID:', candidateID); // Debugging log
     candidatesAPI.updateCandidate(candidateID, formData)
@@ -88,7 +81,7 @@ function CandidateRegistration() {
       setMessage('Please enter a Candidate ID to delete.');
       return;
     }
-    
+
     setLoading(true);
     console.log('Deleting candidate with ID:', candidateID); // Debugging log
     candidatesAPI.deleteCandidate(candidateID)
@@ -105,10 +98,6 @@ function CandidateRegistration() {
         setLoading(false);
       });
   };
-
-  if (!isLoggedIn) {
-    return <LoginForm onLogin={handleLogin} />;
-  }
 
   return (
     <Container className="candidate-registration-page">
@@ -134,62 +123,66 @@ function CandidateRegistration() {
             </Form.Group>
 
             <Form.Group controlId="formName">
-  <Form.Label>Name</Form.Label>
-  <Form.Control
-    type="text"
-    name="cname"
-    placeholder="Enter candidate name"
-    value={formData.cname || ''}
-    onChange={handleChange}
-    required
-  />
-</Form.Group>
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type="text"
+                name="cname"
+                placeholder="Enter candidate name"
+                value={formData.cname || ''}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
 
-    <Form.Group controlId="formAge">
-    <Form.Label>Age</Form.Label>
-    <Form.Control
-    type="text"
-    name="age"
-    placeholder="Enter your age"
-    value={formData.age || ''}
-    onChange={handleChange}
-    required/>
-    </Form.Group>
+            <Form.Group controlId="formAge">
+              <Form.Label>Age</Form.Label>
+              <Form.Control
+                type="text"
+                name="age"
+                placeholder="Enter your age"
+                value={formData.age || ''}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
 
-    <Form.Group controlId="formExperience">
-    <Form.Label>Experience</Form.Label>
-    <Form.Control
-    as="textarea"
-    rows={3}
-    name="experience"
-    placeholder="Enter your experience"
-    value={formData.experience || ''}
-    onChange={handleChange}
-    required/>
-    </Form.Group>
+            <Form.Group controlId="formExperience">
+              <Form.Label>Experience</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                name="experience"
+                placeholder="Enter your experience"
+                value={formData.experience || ''}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
 
-    <Form.Group controlId="formPreviousPosition">
-    <Form.Label>Previous Position</Form.Label>
-    <Form.Control
-    type="text"
-    name="prev_position"
-    placeholder="Enter your previous position"
-    value={formData.prev_position || ''}
-    onChange={handleChange}
-    required/>
-    </Form.Group>
+            <Form.Group controlId="formPreviousPosition">
+              <Form.Label>Previous Position</Form.Label>
+              <Form.Control
+                type="text"
+                name="prev_position"
+                placeholder="Enter your previous position"
+                value={formData.prev_position || ''}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
 
-    <Form.Group controlId="formQualifications">
-    <Form.Label>Qualifications</Form.Label>
-    <Form.Control
-    as="textarea"
-    rows={3}
-    name="qualifications"
-    placeholder="Enter your qualifications"
-    value={formData.qualifications || ''}
-    onChange={handleChange}
-    required/>
-    </Form.Group>
+            <Form.Group controlId="formQualifications">
+              <Form.Label>Qualifications</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                name="qualifications"
+                placeholder="Enter your qualifications"
+                value={formData.qualifications || ''}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
 
             <Button disabled={loading} variant="primary" type="submit">
               {loading ? 'Creating...' : 'Submit'}
@@ -206,4 +199,5 @@ function CandidateRegistration() {
     </Container>
   );
 }
+
 export default CandidateRegistration;

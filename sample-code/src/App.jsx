@@ -16,6 +16,7 @@ import CandidateRegistration from './CandidateRegistration';
 import VoterRegistration from './VoterRegistration';
 import Election from './Election';
 import Results from './Results';
+import Admin from './Admin';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
                 <Nav.Link as={Link} to="/User-Guide">User Guide</Nav.Link>
                 <Nav.Link as={Link} to="/rules">Rules & Regulations</Nav.Link>
                 <Nav.Link as={Link} to="/about">About Us</Nav.Link>
+                <Nav.Link as={Link} to="/admin">Admin</Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Container>
@@ -50,6 +52,7 @@ function App() {
           <Route path="/voter-registration" element={<VoterRegistration />} />
           <Route path="/election" element={<Election />} />
           <Route path="/results" element={<Results />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
       </ContentWrapper>
     </Router>
@@ -63,11 +66,11 @@ function ContentWrapper({ children }) {
     <div>
       {location.pathname === '/' && (
         <div>
-          <Button as={Link} to="/candidate-registration" variant="secondary" style={{ padding: '1em 3em', fontSize: '1.5em', marginRight: '1em', marginBottom: '1em' }}>Candidate Registration</Button>{' '}<br></br>
+          {/* <Button as={Link} to="/candidate-registration" variant="secondary" style={{ padding: '1em 3em', fontSize: '1.5em', marginRight: '1em', marginBottom: '1em' }}>Candidate Registration</Button>{' '}<br></br> */}
           <Button as={Link} to="/voter-registration" variant="dark" style={{padding: '1em 3em', fontSize: '1.5em', marginRight: '1em', marginBottom: '1em' }}>Voter Registration</Button>{' '}
           <br />
           <Button as={Link} to="/election" variant="success" style={{ padding: '1em 3em', fontSize: '1.5em', marginRight: '1em' }}>Election</Button>{' '}
-          <Button as={Link} to="/results" variant="warning" style={{ padding: '1em 3em', fontSize: '1.5em' }}>Results</Button>
+          {/* <Button as={Link} to="/results" variant="warning" style={{ padding: '1em 3em', fontSize: '1.5em' }}>Results</Button> */}
         </div>
       )}
       {children}
@@ -80,4 +83,3 @@ function Home() {
 }
 
 export default App;
-

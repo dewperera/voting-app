@@ -1,0 +1,36 @@
+.admin-page {
+    text-align: center;
+    padding: 2em;
+    background-color: #f8f9fa;
+  }
+  
+  .admin-page h2 {
+    margin-bottom: 1.5em;
+    font-size: 2em;
+    color: #333;
+  }
+  
+  .admin-button {
+    padding: 1em 3em;
+    font-size: 1.5em;
+    margin: 0.5em;
+  }
+  
+  /* Style for secondary buttons */
+  .admin-button.variant-secondary {
+    background-color: #6c757d;
+    border: none;
+    color: white;
+  }
+  
+  /* Style for warning buttons */
+  .admin-button.variant-warning {
+    background-color: #ffc107;
+    border: none;
+    color: black;
+  }
+  
+  .admin-button:hover {
+    opacity: 0.9;
+  }
+  
