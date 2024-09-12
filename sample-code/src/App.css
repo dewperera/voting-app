@@ -76,7 +76,7 @@
 /* Background gradient for the body */
 /* Background for the body with a modern gradient and overlay effect */
 body {
-  background: linear-gradient(to bottom, #e0f7fa, #b2ebf2); /* Light blue gradient */
+  background: linear-gradient(to right, #2a7df1, #f25858); 
   font-family: 'Arial', sans-serif;
   color: #333;
   margin: 0;
