@@ -193,6 +193,9 @@ function CandidateRegistration() {
             <Button variant="danger" onClick={handleDelete} disabled={loading || !candidateID}>
               {loading ? 'Deleting...' : 'Delete'}
             </Button>
+            <Button className="clear-all" onClick={() => navigate('/clear-all')}>
+          Clear All
+        </Button>
           </Form>
         </Col>
       </Row>
