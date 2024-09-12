@@ -7,7 +7,7 @@ function Election() {
   const [candidates, setCandidates] = useState([]);
   const [voters, setVoters] = useState([]);
   const [selectedCandidate, setSelectedCandidate] = useState('');
-  const [selectedVoter, setSelectedVoter] = useState('');
+  const [voterIdInput, setVoterIdInput] = useState('');
 
   // Pre-fetch candidate data when component mounts
   useEffect(() => {
@@ -34,13 +34,20 @@ function Election() {
   };
 
   const handleVote = async () => {
-    if (!selectedCandidate || !selectedVoter) {
-      window.alert('Please select both a candidate and a voter.');
+    if (!selectedCandidate || !voterIdInput) {
+      window.alert('Please enter a voter ID and select a candidate.');
+      return;
+    }
+
+    const voterExists = voters.some(voter => voter.vid === voterIdInput);
+
+    if (!voterExists) {
+      window.alert('Invalid Voter ID. Please enter a valid ID.');
       return;
     }
 
     const votePayload = {
-      voterId: selectedVoter,
+      voterId: voterIdInput,
       candidateId: selectedCandidate
     };
 
@@ -49,7 +56,7 @@ function Election() {
       window.alert('Vote cast successfully!');
       // Clear selected items
       setSelectedCandidate('');
-      setSelectedVoter('');
+      setVoterIdInput('');
     } catch (error) {
       if (error.response && error.response.status === 403) {
         window.alert('Voter has already cast a vote.');
@@ -97,26 +104,17 @@ function Election() {
         <div className="vote-box">
           <h2 className="vote-title">CAST VOTES</h2>
           <div className="input-group">
-            <label className="voter-label">Voter ID =</label>
-            <select
+            <label className="voter-label">Enter Voter ID:</label>
+            <input
+              type="text"
               className="voter-input"
-              value={selectedVoter}
-              onChange={e => setSelectedVoter(e.target.value)}
-            >
-              <option value="">Select Voter ID</option>
-              {voters.length > 0 ? (
-                voters.map(voter => (
-                  <option key={voter.vid} value={voter.vid}>
-                    {voter.vid}
-                  </option>
-                ))
-              ) : (
-                <option value="">No voters available</option>
-              )}
-            </select>
+              value={voterIdInput}
+              onChange={e => setVoterIdInput(e.target.value)}
+              placeholder="Enter Voter ID"
+            />
           </div>
           <div className="input-group">
-            <label className="candidate-label">Preferred Candidate =</label>
+            <label className="candidate-label">Preferred Candidate:</label>
             <select
               className="candidate-input"
               value={selectedCandidate}
