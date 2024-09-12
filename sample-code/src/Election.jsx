@@ -33,7 +33,7 @@ function Election() {
     setShowCandidates(!showCandidates);
   };
 
-  const handleVote = () => {
+  const handleVote = async () => {
     if (!selectedCandidate || !selectedVoter) {
       window.alert('Please select both a candidate and a voter.');
       return;
@@ -44,16 +44,19 @@ function Election() {
       candidateId: selectedCandidate
     };
 
-    electionAPI.createVote(votePayload)
-      .then(() => {
-        window.alert('Vote cast successfully!'); // Show prompt message
-        // Clear selected items
-        setSelectedCandidate('');
-        setSelectedVoter('');
-      })
-      .catch(error => {
-        window.alert(`Error casting vote: ${error.message}`); // Show prompt message for errors
-      });
+    try {
+      await electionAPI.createVote(votePayload);
+      window.alert('Vote cast successfully!');
+      // Clear selected items
+      setSelectedCandidate('');
+      setSelectedVoter('');
+    } catch (error) {
+      if (error.response && error.response.status === 403) {
+        window.alert('Voter has already cast a vote.');
+      } else {
+        window.alert(`Error casting vote: ${error.message}`);
+      }
+    }
   };
 
   return (

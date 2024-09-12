@@ -1,79 +1,87 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import axios from 'axios';
 import './results.css';
-import Election from './Election'; // Import the Election component
 
 function Results() {
-  const [candidate1, setCandidate1] = useState('');
-  const [candidate2, setCandidate2] = useState('');
-  const [candidate3, setCandidate3] = useState('');
-  const [candidate4, setCandidate4] = useState('');
-  
-  // State to control the navigation to Election component
-  const [showElection, setShowElection] = useState(false);
+  const [results, setResults] = useState([]);
+  const [error, setError] = useState(null);
+  const [winner, setWinner] = useState(null); // State to hold the winner's information
+  const navigate = useNavigate(); // Initialize useNavigate
 
-  // Function to handle the "Election" button click
-  const handleElectionClick = () => {
-    setShowElection(true);
+  // Function to fetch vote results from the backend
+  const fetchVoteResults = async () => {
+    try {
+      const response = await axios.get('http://localhost:8082/api/votes/countByCandidate');
+      
+      // Log the response data for debugging
+      console.log('Response data:', response.data);
+
+      if (response.data && Object.keys(response.data).length > 0) {
+        const formattedResults = Object.entries(response.data).map(([candidateId, voterCount]) => ({
+          candidateId,
+          voterCount
+        }));
+        setResults(formattedResults);
+        setError(null); // Clear error if fetch is successful
+
+        // Find the candidate with the most votes
+        const highestVote = Math.max(...formattedResults.map(result => result.voterCount));
+        const winningCandidate = formattedResults.find(result => result.voterCount === highestVote);
+        setWinner(winningCandidate); // Set the winner's information
+      } else {
+        console.log('No vote data found.');
+        setResults([]);
+        setError('No results available.'); // Update error message
+        setWinner(null); // Clear winner if no results
+      }
+    } catch (error) {
+      console.error('Error fetching election results:', error);
+      setResults([]); // Clear results on error
+      setError('Error fetching election results.'); // Set error message
+      setWinner(null); // Clear winner on error
+    }
   };
 
-  // If showElection is true, render the Election component
-  if (showElection) {
-    return <Election />;
-  }
+  // Fetch results when component loads
+  useEffect(() => {
+    fetchVoteResults();
+  }, []);
 
   return (
     <div className="container">
-      <div className="header"><h1><b>ELECTION RESULTS</b></h1></div>
-
-      <div className="results-row">
-        <div className="result candidate-1">01</div>
-        <div className="equal-sign">=</div>
-        <input 
-          type="text" 
-          className="result candidate-1 input-box" 
-          value={candidate1} 
-          onChange={(e) => setCandidate1(e.target.value)} 
-        />
-        <div className="result candidate-1">%</div>
+      <div className="header">
+        <h1><b>ELECTION RESULTS</b></h1>
       </div>
 
-      <div className="results-row">
-        <div className="result candidate-2">02</div>
-        <div className="equal-sign">=</div>
-        <input 
-          type="text" 
-          className="result candidate-2 input-box" 
-          value={candidate2} 
-          onChange={(e) => setCandidate2(e.target.value)} 
-        />
-        <div className="result candidate-2">%</div>
-      </div>
+      {error && <p className="error">{error}</p>}
 
-      <div className="results-row">
-        <div className="result candidate-3">03</div>
-        <div className="equal-sign">=</div>
-        <input 
-          type="text" 
-          className="result candidate-3 input-box" 
-          value={candidate3} 
-          onChange={(e) => setCandidate3(e.target.value)} 
-        />
-        <div className="result candidate-3">%</div>
-      </div>
+      {winner && (
+        <div className="winner-section">
+          <h2 className="winner-title">Winner:</h2>
+          <div className="winner-card">
+            <div className="candidate-id">Candidate ID: {winner.candidateId}</div>
+            <div className="voter-count">{winner.voterCount} votes</div>
+          </div>
+        </div>
+      )}
 
-      <div className="results-row">
-        <div className="result candidate-4">04</div>
-        <div className="equal-sign">=</div>
-        <input 
-          type="text" 
-          className="result candidate-4 input-box" 
-          value={candidate4} 
-          onChange={(e) => setCandidate4(e.target.value)} 
-        />
-        <div className="result candidate-4">%</div>
-      </div>
+      {results.length === 0 ? (
+        <p>No results available.</p>
+      ) : (
+        <div className="results-grid">
+          {results.map((result) => (
+            <div className="result-card" key={result.candidateId}>
+              <div className="candidate-id">Candidate ID: {result.candidateId}</div>
+              <div className="voter-count">{result.voterCount} votes</div>
+            </div>
+          ))}
+        </div>
+      )}
 
-      <button className="election-button" onClick={handleElectionClick}>Election</button>
+      <button className="navigate-button" onClick={() => navigate('/election')}>
+        Go to Election
+      </button>
     </div>
   );
 }

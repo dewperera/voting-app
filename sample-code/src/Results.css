@@ -1,102 +1,107 @@
+/* Container for the results page */
 .container {
-    text-align: center;
-    padding: 20px;
-    max-height: 80vh; /* Adjust this value based on your needs */
-    overflow-y: auto; /* Add vertical scrollbar if content overflows */
-    overflow-x: hidden; /* Hide horizontal scrollbar if not needed */
-    position: relative;
-  }
+  text-align: center;
+  padding: 20px;
+  max-height: 80vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+}
 
-  /* Hide scrollbar for WebKit browsers (Chrome, Safari) */
-.container::-webkit-scrollbar {
-    width: 0; /* Hides the scrollbar */
-    background: transparent; /* Optional: just in case */
-  }
-  
-  /* Hide scrollbar for Firefox */
-  .container {
-    scrollbar-width: none; /* Hides the scrollbar */
-  }
-  
-  /* Optional: Additional styling to ensure smooth scrolling */
-  .container {
-    -ms-overflow-style: none; /* Hides scrollbar in Internet Explorer and Edge */
-  }
-  
-  .header {
-    font-size: 24px;
-    margin-bottom: 20px; /* Space below the header */
-    margin-top: 30px;
+/* Header styling */
+.header {
+  font-size: 24px;
+  margin-bottom: 20px;
+  margin-top: 30px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #f4f4f4;
+}
 
-    padding: 10px;
-    border-radius: 8px;
-  }
-  
-  .results-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px; /* Space between rows */
-  }
-  
-  .result, .input-box {
-    width: 100px; /* Set the width to match */
-    height: 60px; /* Ensure height matches */
-    padding: 10px; /* Adjust padding to fit the content */
-    box-sizing: border-box; /* Include padding and border in total width and height */
-    border-radius: 8px;
-    margin: 0 5px;
-    color: white;
-    font-size: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .candidate-1 {
-    background-color: magenta;
-  }
-  
-  .candidate-2 {
-    background-color: rgb(4, 135, 82);
-  }
-  
-  .candidate-3 {
-    background-color: rgb(148, 152, 23);
-  }
-  
-  .candidate-4 {
-    background-color: rgb(17, 118, 206);
-  }
-  
-  .equal-sign {
-    margin: 0 10px;
-    font-size: 18px; /* Ensure the equal sign is still visible */
-  }
-  
-  .input-box {
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    text-align: center;
-  }
-  
-  .election-button {
-    background-color: rgb(67, 9, 78);
-    color: white;
-    padding: 20px 40px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 18px;
-  }
-  
-  .election-button:hover {
-    background-color: rgb(250, 7, 7);
-  }
-  
-  
-  
-  
-  
-  
-  
+/* Grid layout for results */
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Card styling for each result */
+.result-card {
+  background-color: #ffffff;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Hover effect for result cards */
+.result-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling for candidate ID and voter count */
+.candidate-id {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+.voter-count {
+  font-size: 16px;
+  color: #666;
+}
+
+/* No results available styling */
+.container p {
+  font-size: 18px;
+  color: #888;
+}
+
+.navigate-button {
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: #007bff; /* Blue color for the button */
+  color: white;
+  font-size: 16px;
+  border-radius: 12px; /* Adjust this value to increase or decrease roundness */
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.navigate-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.winner-section {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #d4edda; /* Light green background for the winner section */
+  border: 1px solid #c3e6cb; /* Green border for the winner section */
+  border-radius: 12px; /* Rounded corners */
+}
+
+.winner-title {
+  font-size: 20px;
+  color: #155724; /* Dark green color for the winner title */
+}
+
+.winner-card {
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #c3e6cb;
+  border-radius: 12px; /* Rounded corners */
+}
+
+.winner-candidate-id {
+  color: #ff5733; /* Bright color for the winner's candidate ID (e.g., bright orange) */
+  font-weight: bold; /* Bold font for emphasis */
+}
+
+
