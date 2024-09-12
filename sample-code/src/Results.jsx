@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import LoginForm from './LoginForm'; // Import LoginForm component
 import './results.css';
 
 function Results() {
   const [results, setResults] = useState([]);
   const [error, setError] = useState(null);
   const [winner, setWinner] = useState(null);
-  const [showLogin, setShowLogin] = useState(true); // State to control login form visibility
   const [message, setMessage] = useState(''); // State for feedback messages
   const navigate = useNavigate();
 
@@ -52,16 +50,8 @@ function Results() {
 
   // Fetch results when component loads
   useEffect(() => {
-    if (!showLogin) {
-      fetchVoteResults();
-    }
-  }, [showLogin]);
-
-  // Function to handle successful login
-  const handleLoginSuccess = () => {
-    setShowLogin(false);
     fetchVoteResults();
-  };
+  }, []);
 
   // Function to handle new election
   const handleNewElection = async () => {
@@ -74,10 +64,6 @@ function Results() {
       setError('Error initiating new election.');
     }
   };
-
-  if (showLogin) {
-    return <LoginForm onLogin={handleLoginSuccess} />;
-  }
 
   return (
     <div className="container">

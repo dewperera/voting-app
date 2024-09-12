@@ -1,36 +1,44 @@
-.admin-page {
-    text-align: center;
-    padding: 2em;
-    background-color: #f8f9fa;
-  }
-  
-  .admin-page h2 {
-    margin-bottom: 1.5em;
-    font-size: 2em;
-    color: #333;
-  }
-  
-  .admin-button {
-    padding: 1em 3em;
-    font-size: 1.5em;
-    margin: 0.5em;
-  }
-  
-  /* Style for secondary buttons */
-  .admin-button.variant-secondary {
-    background-color: #6c757d;
-    border: none;
-    color: white;
-  }
-  
-  /* Style for warning buttons */
-  .admin-button.variant-warning {
-    background-color: #ffc107;
-    border: none;
-    color: black;
-  }
-  
-  .admin-button:hover {
-    opacity: 0.9;
-  }
-  
+.admin-page .admin-button {
+  padding: 1em 4em; /* Larger padding */
+  font-size: 1.2em; /* Larger font size */
+  margin: 0.5em;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+
+.admin-page h2 {
+  margin-bottom: 1.5em;
+  font-size: 2em;
+  color: #333;
+}
+
+.admin-button {
+  padding: 1em 4em; /* Larger padding */
+  font-size: 1.8em; /* Larger font size */
+  margin: 0.5em;
+  border-radius: 5px; /* Rounded corners */
+  border: 1px solid transparent; /* Border color to match background */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+/* Style for secondary buttons */
+.admin-button.variant-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: white;
+}
+
+/* Style for warning buttons */
+.admin-button.variant-warning {
+  background-color: #ffc107;
+  border-color: #ffc107;
+  color: black;
+}
+
+.admin-button:hover {
+  opacity: 0.9; /* Slight opacity change on hover */
+}
