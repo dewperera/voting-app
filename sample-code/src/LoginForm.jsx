@@ -4,7 +4,7 @@ import { Container, Form, Button, Col, Row } from 'react-bootstrap';
 function LoginForm({ onLogin }) {
   const [loginData, setLoginData] = useState({ username: '', password: '' });
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(''); // State to handle error messages
+  const [error, setError] = useState(''); // Handle error messages
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,16 +17,16 @@ function LoginForm({ onLogin }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    setError(''); // Clear any previous errors
+    setError(''); // Clear errors
 
-    // Simulate a login process with hardcoded credentials
+    // Login credentials
     const validUsername = 'admin';
     const validPassword = '123';
 
     setTimeout(() => {
       if (loginData.username === validUsername && loginData.password === validPassword) {
         console.log('Logged in:', loginData);
-        onLogin(); // Call the onLogin function passed as a prop
+        onLogin(); // Call the onLogin function
       } else {
         setError('Invalid username or password');
       }

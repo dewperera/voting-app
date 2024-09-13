@@ -36,7 +36,7 @@ function VoterRegistration() {
         if (res.data.exists) {
           setMessage('The entered NIC is already registered.');
           setMessageType('danger');
-          setErrorFields({ vid: true }); // Highlight NIC field
+          setErrorFields({ vid: true }); 
         } else {
           // If NIC is not registered, proceed with registration
           votingAPI.addVoter(formData)

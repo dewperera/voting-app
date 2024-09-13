@@ -14,7 +14,7 @@
   font-size: 16px;
   cursor: pointer;
   border-radius: 4px;
-  width: 100%; /* Adjusted to fit container width */
+  width: 100%; 
   margin-bottom: 20px;
   margin-top: 40px;
 }
@@ -34,16 +34,16 @@
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(82, 54, 54, 0.251);
   text-align: center;
-  width: 100%; /* Adjusted to fit container width */
-  max-width: 500px; /* Set a max-width for responsive design */
+  width: 100%; 
+  max-width: 500px; 
 }
 
 .vote-box {
-  margin-left: 20px; /* Space between form and candidate table */
+  margin-left: 20px; 
 }
 
 .candidate-table {
-  margin-right: 20px; /* Space between table and form */
+  margin-right: 20px; 
 }
 
 .vote-title, .candidate-title {
@@ -113,5 +113,5 @@ table td {
 }
 
 table th, table td {
-  min-width: 100px; /* Ensures columns have a minimum width */
+  min-width: 100px; 
 }

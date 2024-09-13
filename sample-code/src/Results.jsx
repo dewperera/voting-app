@@ -7,10 +7,10 @@ function Results() {
   const [results, setResults] = useState([]);
   const [error, setError] = useState(null);
   const [winner, setWinner] = useState(null);
-  const [message, setMessage] = useState(''); // State for feedback messages
+  const [message, setMessage] = useState(''); 
   const navigate = useNavigate();
 
-  // Function to fetch vote results from the backend
+  // Fetch vote results from the backend
   const fetchVoteResults = async () => {
     try {
       const response = await axios.get('http://localhost:8082/api/votes/countByCandidate');
@@ -37,7 +37,7 @@ function Results() {
     }
   };
 
-  // Function to clear votes and reset the results
+  // Clear votes and reset the results
   const clearVotes = async () => {
     try {
       await axios.delete('http://localhost:8082/api/votes/clear');

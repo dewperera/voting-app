@@ -1,4 +1,3 @@
-/* Container for the results page */
 .container {
   text-align: center;
   padding: 20px;
@@ -8,7 +7,6 @@
   position: relative;
 }
 
-/* Header styling */
 .header {
   font-size: 24px;
   margin-bottom: 20px;
@@ -18,7 +16,6 @@
   background-color: #f4f4f4;
 }
 
-/* Grid layout for results */
 .results-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -27,7 +24,6 @@
   margin-top: 20px;
 }
 
-/* Card styling for each result */
 .result-card {
   background-color: #ffffff;
   border: 2px solid #ddd;
@@ -38,13 +34,11 @@
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
-/* Hover effect for result cards */
 .result-card:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* Styling for candidate ID and voter count */
 .candidate-id {
   font-size: 18px;
   margin-bottom: 10px;
@@ -57,7 +51,6 @@
   color: #666;
 }
 
-/* No results available styling */
 .container p {
   font-size: 18px;
   color: #888;
@@ -67,10 +60,10 @@
   border: none;
   padding: 10px 20px;
   margin-top: 20px;
-  background-color: #007bff; /* Blue color for the button */
+  background-color: #007bff; 
   color: white;
   font-size: 16px;
-  border-radius: 12px; /* Adjust this value to increase or decrease roundness */
+  border-radius: 12px; 
   cursor: pointer;
   transition: background-color 0.3s;
 }
@@ -79,40 +72,40 @@
   border: none;
   padding: 10px 20px;
   margin-top: 20px;
-  background-color: #007bff; /* Blue color for the button */
+  background-color: #007bff; 
   color: white;
   font-size: 16px;
-  border-radius: 12px; /* Adjust this value to increase or decrease roundness */
+  border-radius: 12px; 
   cursor: pointer;
   transition: background-color 0.3s;
   margin-left: 2%; 
 }
 
 .navigate-button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+  background-color: #0056b3; 
 }
 
 .winner-section {
   margin-top: 20px;
   padding: 10px;
-  background-color: #d4edda; /* Light green background for the winner section */
-  border: 1px solid #c3e6cb; /* Green border for the winner section */
-  border-radius: 12px; /* Rounded corners */
+  background-color: #d4edda; 
+  border: 1px solid #c3e6cb; 
+  border-radius: 12px; 
 }
 
 .winner-title {
   font-size: 20px;
-  color: #155724; /* Dark green color for the winner title */
+  color: #155724; 
 }
 
 .winner-card {
   padding: 10px;
   background-color: #fff;
   border: 1px solid #c3e6cb;
-  border-radius: 12px; /* Rounded corners */
+  border-radius: 12px; 
 }
 
 .winner-candidate-id {
-  color: #ff5733; /* Bright color for the winner's candidate ID (e.g., bright orange) */
-  font-weight: bold; /* Bold font for emphasis */
+  color: #ff5733; 
+  font-weight: bold; 
 }

@@ -1,4 +1,3 @@
-// src/Rules.jsx
 import React from 'react';
 import './Rules.css';
 

@@ -1,6 +1,6 @@
 .admin-page .admin-button {
-  padding: 1em 4em; /* Larger padding */
-  font-size: 1.2em; /* Larger font size */
+  padding: 1em 4em; 
+  font-size: 1.2em; 
   margin: 0.5em;
   border-radius: 5px;
   border: 1px solid transparent;
@@ -16,11 +16,11 @@
 }
 
 .admin-button {
-  padding: 1em 4em; /* Larger padding */
-  font-size: 1.8em; /* Larger font size */
+  padding: 1em 4em; 
+  font-size: 1.8em; 
   margin: 0.5em;
-  border-radius: 5px; /* Rounded corners */
-  border: 1px solid transparent; /* Border color to match background */
+  border-radius: 5px; 
+  border: 1px solid transparent; 
   cursor: pointer; /* Pointer cursor on hover */
   transition: background-color 0.3s, color 0.3s; /* Smooth transition */
 }
@@ -40,5 +40,5 @@
 }
 
 .admin-button:hover {
-  opacity: 0.9; /* Slight opacity change on hover */
+  opacity: 0.9; 
 }

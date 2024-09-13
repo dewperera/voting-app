@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import './Election.css';
 import { electionAPI } from './api/electionAPI';
 
+
 function Election() {
   const [showCandidates, setShowCandidates] = useState(false);
   const [candidates, setCandidates] = useState([]);
   const [voters, setVoters] = useState([]);
   const [selectedCandidate, setSelectedCandidate] = useState('');
-  const [voterIdInput, setVoterIdInput] = useState('');
+  const [selectedVoter, setSelectedVoter] = useState('');
 
-  // Pre-fetch candidate data when component mounts
+  // Fetch candidate data 
   useEffect(() => {
     fetch('http://localhost:8080/api/candidates')
       .then(response => response.json())
@@ -19,7 +20,7 @@ function Election() {
       .catch(error => console.error('Error fetching candidates:', error));
   }, []);
 
-  // Pre-fetch voter data when component mounts
+  // Fetch voter data 
   useEffect(() => {
     fetch('http://localhost:8081/api/voters')
       .then(response => response.json())
@@ -34,20 +35,13 @@ function Election() {
   };
 
   const handleVote = async () => {
-    if (!selectedCandidate || !voterIdInput) {
-      window.alert('Please enter your NIC and select a candidate.');
-      return;
-    }
-
-    const voterExists = voters.some(voter => voter.vid === voterIdInput);
-
-    if (!voterExists) {
-      window.alert('Invalid NIC NO. Please enter a valid NIC NO.');
+    if (!selectedCandidate || !selectedVoter) {
+      window.alert('Please select both a candidate and a voter.');
       return;
     }
 
     const votePayload = {
-      voterId: voterIdInput,
+      voterId: selectedVoter,
       candidateId: selectedCandidate
     };
 
@@ -56,7 +50,7 @@ function Election() {
       window.alert('Vote cast successfully!');
       // Clear selected items
       setSelectedCandidate('');
-      setVoterIdInput('');
+      setSelectedVoter('');
     } catch (error) {
       if (error.response && error.response.status === 403) {
         window.alert('Voter has already cast a vote.');
@@ -104,17 +98,26 @@ function Election() {
         <div className="vote-box">
           <h2 className="vote-title">CAST VOTES</h2>
           <div className="input-group">
-            <label className="voter-label">Enter your NIC:</label>
-            <input
-              type="text"
+            <label className="voter-label">Voter ID =</label>
+            <select
               className="voter-input"
-              value={voterIdInput}
-              onChange={e => setVoterIdInput(e.target.value)}
-              placeholder="NIC"
-            />
+              value={selectedVoter}
+              onChange={e => setSelectedVoter(e.target.value)}
+            >
+              <option value="">Select Voter ID</option>
+              {voters.length > 0 ? (
+                voters.map(voter => (
+                  <option key={voter.vid} value={voter.vid}>
+                    {voter.vid}
+                  </option>
+                ))
+              ) : (
+                <option value="">No voters available</option>
+              )}
+            </select>
           </div>
           <div className="input-group">
-            <label className="candidate-label">Preferred Candidate:</label>
+            <label className="candidate-label">Preferred Candidate =</label>
             <select
               className="candidate-input"
               value={selectedCandidate}

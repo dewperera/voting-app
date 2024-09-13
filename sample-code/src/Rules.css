@@ -5,24 +5,24 @@
     background: linear-gradient(to right, #ffffff, #f0f0f0);
     border-radius: 12px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    height: 100%; /* Ensure it uses available height */
-    max-height: 500px; /* Or set to whatever fits your design */
-    overflow-y: auto; /* Allow vertical scrolling */
-    overflow-x: hidden; /* Hide horizontal scrolling */
+    height: 100%; 
+    max-height: 500px; 
+    overflow-y: auto; 
+    overflow-x: hidden; 
     position: relative;
-    box-sizing: border-box; /* Include padding in height calculation */
+    box-sizing: border-box; 
 }
 
 .container {
-    position: relative; /* Ensure z-index works */
-    z-index: 10; /* Adjust if necessary */
+    position: relative; 
+    z-index: 10; 
 }
 
 
-/* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+/* Hide scrollbar Chrome, Safari) */
 .rules-regulations-container::-webkit-scrollbar {
-    width: 0; /* Hides the scrollbar */
-    background: transparent; /* Optional */
+    width: 0; 
+    background: transparent;
 }
 
 /* Hide scrollbar for Firefox */
@@ -30,7 +30,6 @@
     scrollbar-width: none; /* Hides the scrollbar */
 }
 
-/* Optional: Additional styling to ensure smooth scrolling */
 .rules-regulations-container {
     -ms-overflow-style: none; /* Hides scrollbar in Internet Explorer and Edge */
 }

@@ -21,17 +21,17 @@ function CandidateRegistration() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    console.log('Submitting candidate with data:', formData); // Debugging log
+    console.log('Submitting candidate with data:', formData); // Debugging 
     candidatesAPI.createCandidate(formData)
       .then(res => {
-        console.log('Candidate created successfully:', res.data); // Debugging log
+        console.log('Candidate created successfully:', res.data); // Debugging 
         setMessage('Candidate created successfully!');
         setLoading(false);
         setFormData({}); // Clear the form after submission
         setCandidateID(''); // Clear candidateID after submission
       })
       .catch(err => {
-        console.error('Error creating candidate:', err.response ? err.response.data : err.message); // Improved error logging
+        console.error('Error creating candidate:', err.response ? err.response.data : err.message); 
         setMessage('Error creating candidate.');
         setLoading(false);
       });
@@ -63,15 +63,15 @@ function CandidateRegistration() {
     }
 
     setLoading(true);
-    console.log('Updating candidate with ID:', candidateID); // Debugging log
+    console.log('Updating candidate with ID:', candidateID); // Debugging 
     candidatesAPI.updateCandidate(candidateID, formData)
       .then(res => {
-        console.log('Candidate updated successfully:', res.data); // Debugging log
+        console.log('Candidate updated successfully:', res.data); // Debugging 
         setMessage('Candidate updated successfully!');
         setLoading(false);
       })
       .catch(err => {
-        console.error('Error updating candidate:', err.response ? err.response.data : err.message); // Improved error logging
+        console.error('Error updating candidate:', err.response ? err.response.data : err.message); 
         setMessage('Error updating candidate.');
         setLoading(false);
       });
@@ -84,28 +84,27 @@ function CandidateRegistration() {
     }
 
     setLoading(true);
-    console.log('Deleting candidate with ID:', candidateID); // Debugging log
+    console.log('Deleting candidate with ID:', candidateID); // Debugging
     candidatesAPI.deleteCandidate(candidateID)
       .then(res => {
-        console.log('Candidate deleted successfully:', res.data); // Debugging log
+        console.log('Candidate deleted successfully:', res.data); // Debugging 
         setMessage('Candidate deleted successfully!');
         setFormData({});
         setCandidateID('');
         setLoading(false);
       })
       .catch(err => {
-        console.error('Error deleting candidate:', err.response ? err.response.data : err.message); // Improved error logging
+        console.error('Error deleting candidate:', err.response ? err.response.data : err.message); 
         setMessage('Error deleting candidate.');
         setLoading(false);
       });
   };
 
-  // Function to clear votes and reset the results
+  // Clear votes and reset the results
   const clearCandidates = async () => {
     try {
       await axios.delete('http://localhost:8080/api/candidates/clear');
       window.alert('Candiates cleared successfully!');
-      // Reset results and winner after clearing votes
       // setResults([]);
       // setWinner(null);
       window.alert('Candidates have been cleared. Ready for a new election.');
@@ -115,7 +114,7 @@ function CandidateRegistration() {
     }
   };
 
-    // Function to handle new election
+    // Handle new election
     const handleNewCandidates = async () => {
       try {
         await clearCandidates();
@@ -175,7 +174,7 @@ function CandidateRegistration() {
             </Form.Group>
 
             <Form.Group controlId="formExperience">
-              <Form.Label>Experience (in year)</Form.Label>
+              <Form.Label>Experience (yrs)</Form.Label>
               <Form.Control
                 as="textarea"
                 rows={3}

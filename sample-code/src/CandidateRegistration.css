@@ -1,50 +1,40 @@
-/* src/CandidateRegistration.css */
-
 html, body {
     height: 112%;
     margin: 0;
   }
   
   .candidate-registration-page {
-    margin-top: 70px; /* Add margin to the top for spacing */
+    margin-top: 70px; 
     padding: 20px;
-    max-height: calc(100vh - 70px); /* Limit height based on viewport height minus top margin */
-    overflow-y: auto; /* Enable vertical scrolling if content overflows */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    max-height: calc(100vh - 70px); 
+    overflow-y: auto; 
+    box-sizing: border-box; 
   }
   
-  /* Center align text */
-  /* .text-center {
-    text-align: left;
-  } */
-  
-  /* Space between form groups */
   .form-group {
     margin-bottom: 20px;
   }
   
-  /* Space above the button */
   button {
     margin-top: 100px;
   }
   
-  /* Customize scrollbar appearance */
   .candidate-registration-page::-webkit-scrollbar {
     display: none;
   }
   
   .candidate-registration-page::-webkit-scrollbar-thumb {
-    background: #888; /* Color of the scrollbar handle */
-    border-radius: 4px; /* Round the corners of the scrollbar handle */
+    background: #888; 
+    border-radius: 4px; 
   }
   
   .candidate-registration-page::-webkit-scrollbar-thumb:hover {
-    background: #555; /* Color when hovering over the scrollbar handle */
+    background: #555; 
   }
   
   .candidate-registration-page::-webkit-scrollbar-track {
-    background: #f1f1f1; /* Color of the track (part where the scrollbar slides) */
-    border-radius: 4px; /* Round the corners of the track */
+    background: #f1f1f1; 
+    border-radius: 4px; 
   }
   
   

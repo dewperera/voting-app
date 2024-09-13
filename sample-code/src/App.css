@@ -1,15 +1,15 @@
-/* Enhanced Election-themed Navbar */
+/* Navbar */
 .navbar-custom {
-  background: linear-gradient(135deg, #0047ab, #d32f2f); /* Blue to Red gradient */
+  background: linear-gradient(135deg, #0047ab, #d32f2f); 
   color: white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
 }
 
 .navbar-custom .navbar-brand, 
 .navbar-custom .nav-link {
   color: white;
-  font-weight: bold; /* Make links bold for visibility */
-  padding-left: 15px; /* Add some spacing for comfort */
+  font-weight: bold; 
+  padding-left: 15px; 
   padding-right: 15px;
 }
 
@@ -33,7 +33,7 @@
 }
 
 .navbar-custom .cta-button:hover {
-  background-color: #ffeb3b; /* Lighter gold on hover */
+  background-color: #ffeb3b; 
   color: #002d72;
 }
 
@@ -72,9 +72,7 @@
   background-color: rgba(0, 71, 171, 0.85); 
 }
 
-/* Spacing and styling for body */
-/* Background gradient for the body */
-/* Background for the body with a modern gradient and overlay effect */
+
 body {
   background: linear-gradient(to right, #2a7df1, #f25858); 
   font-family: 'Arial', sans-serif;
@@ -90,24 +88,24 @@ body {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  background: #ffffff; /* White background for the content area */
+  background: #ffffff; 
   border-radius: 15px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Section styling with gradient background and subtle shadow */
 .section {
   margin-bottom: 3rem;
   padding: 2rem;
-  background: linear-gradient(135deg, #ffeb3b, #ffc107); /* Yellow to Amber gradient */
+  background: linear-gradient(135deg, #ffeb3b, #ffc107); 
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
   color: #333;
 }
 
-/* Button styles with vibrant color and hover effects */
+/* Button styles */
 button {
-  background-color: #007bff; /* Primary blue color */
+  background-color: #007bff; 
   color: #fff;
   padding: 12px 24px;
   border-radius: 5px;
@@ -118,29 +116,29 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
-  transform: scale(1.05); /* Slightly enlarge button */
+  background-color: #0056b3; 
+  transform: scale(1.05); 
 }
 
-/* Enhanced card styling with a modern look */
+/* Card styling */
 .card {
   padding: 2em;
   background-color: #ffffff;
   border: 1px solid #dcdcdc;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   margin-bottom: 2rem;
-  border-radius: 8px; /* Rounded corners */
+  border-radius: 8px; 
   transition: box-shadow 0.3s, transform 0.3s;
 }
 
 .card:hover {
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
   transform: translateY(-5px); /* Lift card effect */
 }
 
-/* Footer styling with a vibrant background */
+/* Footer styling  */
 footer {
-  background: #0047ab; /* Election-themed blue */
+  background: #0047ab; 
   color: #fff;
   text-align: center;
   padding: 1rem;
@@ -152,7 +150,7 @@ footer {
 
 /* Typography enhancements */
 h1, h2, h3 {
-  color: #0047ab; /* Election-themed blue */
+  color: #0047ab; 
   margin-bottom: 0.5rem;
 }
 

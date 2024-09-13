@@ -1,7 +1,7 @@
 // src/UserGuide.jsx
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import './UserGuide.css'; // Custom CSS file
+import './UserGuide.css'; 
 
 function UserGuide() {
   return (
@@ -31,9 +31,9 @@ function UserGuide() {
         <Row className="mb-4">
           <Col>
             <h2 className="user-guide-section-heading">2. Register as a Candidate</h2>
-            <p>Click on the <strong>Candidate Registration</strong> button on the homepage.</p>
+            <p>Click on the <strong>Admin</strong> button on the navbar.</p>
+            <p>Click on the <strong>Candidate Registration</strong> button in admin.</p>
             <p>Fill in your candidate details, including name, party affiliation, and manifesto.</p>
-            <p>Upload your campaign photo and any necessary documents.</p>
             <p>Submit your application. Once approved, your profile will appear on the ballot.</p>
           </Col>
         </Row>
@@ -45,7 +45,7 @@ function UserGuide() {
             <p>On Election Day, log in to the Smart Vote App.</p>
             <p>Click on the <strong>Election</strong> button.</p>
             <p>Review the list of candidates and their manifestos.</p>
-            <p>Select your preferred candidate by clicking on their name or photo.</p>
+            <p>Select your preferred candidate by clicking on their id.</p>
             <p>Confirm your vote. Once confirmed, your vote will be securely recorded.</p>
           </Col>
         </Row>
@@ -54,9 +54,9 @@ function UserGuide() {
         <Row className="mb-4">
           <Col>
             <h2 className="user-guide-section-heading">4. Viewing Election Results</h2>
-            <p>Click on the <strong>Results</strong> button on the homepage.</p>
+            <p>Click on the <strong>Admin</strong> button on the navbar.</p>
+            <p>Click on the <strong>Results</strong> button in admin.</p>
             <p>View the live results, including the total number of votes each candidate has received.</p>
-            <p>Use filters to view results by region or demographic if available.</p>
             <p>Results will be updated in real-time until the final tally is announced.</p>
           </Col>
         </Row>

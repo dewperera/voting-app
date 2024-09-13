@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import LoginForm from './LoginForm'; // Import the LoginForm component
-import './Admin.css'; // Import CSS file for Admin component
+import LoginForm from './LoginForm'; 
+import './Admin.css'; 
 
 function Admin() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Manage login state

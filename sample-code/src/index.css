@@ -38,8 +38,8 @@ h1 {
 button {
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 1.5em 3em;  /* Moderately increased padding */
-  font-size: 2em;  /* Significantly increased font size */
+  padding: 1.5em 3em;  
+  font-size: 2em; 
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;

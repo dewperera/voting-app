@@ -1,7 +1,5 @@
-/* src/CandidateRegistration.css */
-
 .voter-registration-page {
-    margin-top: 70px; /* Add margin to the top for spacing */
+    margin-top: 70px; 
     padding: 20px;
   }
   
@@ -10,14 +8,13 @@
   }
   
   .form-group {
-    margin-bottom: 35px; /* Add space between form groups */
+    margin-bottom: 35px; 
   }
   
   button {
-    margin-top: 100px; /* Add space above the button */
+    margin-top: 100px;
   }
 
-/* VoterRegistration.css */
 .input-error {
   border-color: red;
   box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
