@@ -5,10 +5,6 @@ const backendService1 = import.meta.env.VITE_APP_SERVICE_3;
 export const electionAPI = {
     createVote: (payload) => {
         return axios.post(`${backendService1}votes`, payload)
-            .catch(error => {
-                console.error('Error creating vote:', error.response ? error.response.data : error.message);
-                throw error; // Rethrow the error to be caught by the calling function
-            });
     }
    /* getVoteById: (id) => {
         return axios.get(`${backendService1}votes/${id}`)

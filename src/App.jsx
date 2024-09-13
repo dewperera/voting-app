@@ -67,9 +67,9 @@ function ContentWrapper({ children }) {
       {location.pathname === '/' && (
         <div>
           {/* <Button as={Link} to="/candidate-registration" variant="secondary" style={{ padding: '1em 3em', fontSize: '1.5em', marginRight: '1em', marginBottom: '1em' }}>Candidate Registration</Button>{' '}<br></br> */}
-          <Button as={Link} to="/voter-registration" variant="dark" style={{padding: '1em 3em', fontSize: '1.5em', marginRight: '1em', marginBottom: '1em' }}>Voter Registration</Button>{' '}
+          <Button as={Link} to="/voter-registration" variant="dark" style={{padding: '1em 3em', fontSize: '1.5em', marginRight: 'auto', marginLeft:'auto', marginBottom: '1em' }}>Voter Registration</Button>{' '}
           <br />
-          <Button as={Link} to="/election" variant="success" style={{ padding: '1em 3em', fontSize: '1.5em', marginRight: '1em' }}>Election</Button>{' '}
+          <Button as={Link} to="/election" variant="success" style={{ padding: '1em 3em', fontSize: '1.5em', marginRight: 'auto', marginLeft:'auto', }}>Election</Button>{' '}
           {/* <Button as={Link} to="/results" variant="warning" style={{ padding: '1em 3em', fontSize: '1.5em' }}>Results</Button> */}
         </div>
       )}

@@ -98,7 +98,7 @@ function Election() {
         <div className="vote-box">
           <h2 className="vote-title">CAST VOTES</h2>
           <div className="input-group">
-            <label className="voter-label">Voter ID =</label>
+            <label className="voter-label">Voter ID </label>
             <select
               className="voter-input"
               value={selectedVoter}
@@ -117,7 +117,7 @@ function Election() {
             </select>
           </div>
           <div className="input-group">
-            <label className="candidate-label">Preferred Candidate =</label>
+            <label className="candidate-label">Preferred Candidate </label>
             <select
               className="candidate-input"
               value={selectedCandidate}
