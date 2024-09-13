@@ -35,14 +35,14 @@ function Election() {
 
   const handleVote = async () => {
     if (!selectedCandidate || !voterIdInput) {
-      window.alert('Please enter a voter ID and select a candidate.');
+      window.alert('Please enter your NIC and select a candidate.');
       return;
     }
 
     const voterExists = voters.some(voter => voter.vid === voterIdInput);
 
     if (!voterExists) {
-      window.alert('Invalid Voter ID. Please enter a valid ID.');
+      window.alert('Invalid NIC NO. Please enter a valid NIC NO.');
       return;
     }
 
@@ -104,13 +104,13 @@ function Election() {
         <div className="vote-box">
           <h2 className="vote-title">CAST VOTES</h2>
           <div className="input-group">
-            <label className="voter-label">Enter Voter ID:</label>
+            <label className="voter-label">Enter your NIC:</label>
             <input
               type="text"
               className="voter-input"
               value={voterIdInput}
               onChange={e => setVoterIdInput(e.target.value)}
-              placeholder="Enter Voter ID"
+              placeholder="NIC"
             />
           </div>
           <div className="input-group">

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Container, Form, Button, Col, Row, Alert } from 'react-bootstrap';
 import './CandidateRegistration.css';
+import axios from 'axios';
 import { candidatesAPI } from "./api/candidatesAPI.js";
 
 function CandidateRegistration() {
@@ -99,11 +100,38 @@ function CandidateRegistration() {
       });
   };
 
+  // Function to clear votes and reset the results
+  const clearCandidates = async () => {
+    try {
+      await axios.delete('http://localhost:8080/api/candidates/clear');
+      window.alert('Candiates cleared successfully!');
+      // Reset results and winner after clearing votes
+      // setResults([]);
+      // setWinner(null);
+      window.alert('Candidates have been cleared. Ready for a new election.');
+    } catch (error) {
+      console.error('Error clearing candidates:', error.response ? error.response.data : error.message);
+      setError('Error clearing candidates.');
+    }
+  };
+
+    // Function to handle new election
+    const handleNewCandidates = async () => {
+      try {
+        await clearCandidates();
+        console.log('Navigating to /candidates');
+        navigate('/candidates');
+      } catch (error) {
+        console.error('Error during new candidates process:', error);
+        setError('Error initiating new candiadates.');
+      }
+    };
+
   return (
     <Container className="candidate-registration-page">
       <Row>
         <Col>
-          <h3 className="text-center">Candidate Registration Form</h3>
+          <h3 className="text-center"><b>Candidate Registration Form</b></h3>
 
           {message && <Alert variant={message.includes('Error') ? 'danger' : 'success'}>{message}</Alert>}
 
@@ -147,7 +175,7 @@ function CandidateRegistration() {
             </Form.Group>
 
             <Form.Group controlId="formExperience">
-              <Form.Label>Experience</Form.Label>
+              <Form.Label>Experience (in year)</Form.Label>
               <Form.Control
                 as="textarea"
                 rows={3}
@@ -193,7 +221,10 @@ function CandidateRegistration() {
             <Button variant="danger" onClick={handleDelete} disabled={loading || !candidateID}>
               {loading ? 'Deleting...' : 'Delete'}
             </Button>
-            <Button className="clear-all" onClick={() => navigate('/clear-all')}>
+            {/* <Button className="clear-all" onClick={() => navigate('/clear-all')}>
+          Clear All
+        </Button> */}
+        <Button className="clear-all" onClick={handleNewCandidates}>
           Clear All
         </Button>
           </Form>

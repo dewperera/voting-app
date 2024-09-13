@@ -17,7 +17,7 @@ function Results() {
       if (response.data && Object.keys(response.data).length > 0) {
         const formattedResults = Object.entries(response.data).map(([candidateId, voterCount]) => ({
           candidateId,
-          voterCount
+          voterCount,
         }));
         setResults(formattedResults);
         setError(null);
@@ -37,11 +37,15 @@ function Results() {
     }
   };
 
-  // Function to clear votes
+  // Function to clear votes and reset the results
   const clearVotes = async () => {
     try {
       await axios.delete('http://localhost:8082/api/votes/clear');
-      setMessage('Votes cleared successfully!');
+      window.alert('Votes cleared successfully!');
+      // Reset results and winner after clearing votes
+      setResults([]);
+      setWinner(null);
+      setMessage('Votes have been cleared. Ready for a new election.');
     } catch (error) {
       console.error('Error clearing votes:', error.response ? error.response.data : error.message);
       setError('Error clearing votes.');
@@ -110,3 +114,4 @@ function Results() {
 }
 
 export default Results;
+

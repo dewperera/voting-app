@@ -14,9 +14,9 @@ html, body {
   }
   
   /* Center align text */
-  .text-center {
-    text-align: center;
-  }
+  /* .text-center {
+    text-align: left;
+  } */
   
   /* Space between form groups */
   .form-group {
